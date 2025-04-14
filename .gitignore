@@ -1,0 +1,4 @@
+/.mock_server
+.env
+fixes.py
+commit_msg.txt

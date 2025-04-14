@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Meal Tracker</title>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include Tailwind CSS via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Include Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Include Axios for API calls -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-blue-600 text-white p-4 fixed w-full top-0 z-10">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Meal Tracker</h1>
+            <div id="user-info" class="hidden text-sm">
+                Logged in as: <span id="username-display"></span>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <div class="flex min-h-screen pt-16">
+        <!-- Left Spacer (1/3) -->
+        <div class="w-1/3"></div>
+        <!-- Center Content (1/3) -->
+        <div class="w-1/3 p-4">
+            <!-- Authentication Section -->
+            <div id="auth-section" class="bg-white rounded-lg shadow-md p-6">
+                <form id="login-form" class="space-y-4">
+                    <div>
+                        <input type="text" name="username" placeholder="Username" required class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <div class="error field-error text-red-500 text-sm mt-1" id="login-username-error"></div>
+                    </div>
+                    <div class="relative">
+                        <input type="password" name="password" placeholder="Password" required class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" id="login-password">
+                        <button type="button" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 toggle-password" data-target="login-password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <div class="error field-error text-red-500 text-sm mt-1" id="login-password-error"></div>
+                    </div>
+                    <button type="submit" class="bg-blue-500 text-white p-2 rounded w-full hover:bg-blue-600">Login</button>
+                </form>
+                <button id="create-user-btn" class="mt-4 bg-green-500 text-white p-2 rounded w-full hover:bg-green-600">Create User</button>
+                <form id="create-user-form" class="hidden space-y-4 mt-4">
+                    <div>
+                        <input type="email" name="email" placeholder="Email" required class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <div class="error field-error text-red-500 text-sm mt-1" id="create-email-error"></div>
+                    </div>
+                    <div>
+                        <input type="text" name="username" placeholder="Username" required class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <div class="error field-error text-red-500 text-sm mt-1" id="create-username-error"></div>
+                    </div>
+                    <div class="relative">
+                        <input type="password" name="password" placeholder="Password" required class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" id="create-password">
+                        <button type="button" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 toggle-password" data-target="create-password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <div class="error field-error text-red-500 text-sm mt-1" id="create-password-error"></div>
+                    </div>
+                    <div class="relative">
+                        <input type="password" name="confirm-password" placeholder="Confirm Password" required class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" id="create-confirm-password">
+                        <button type="button" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 toggle-password" data-target="create-confirm-password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <div class="error field-error text-red-500 text-sm mt-1" id="create-confirm-password-error"></div>
+                    </div>
+                    <button type="submit" class="bg-blue-500 text-white p-2 rounded w-full hover:bg-blue-600">Create User</button>
+                </form>
+                <div class="error text-red-500 mt-4 text-center" id="auth-error"></div>
+                <div id="auth-loading" class="hidden flex justify-center mt-4">
+                    <div class="animate-spin rounded-full h-8 w-8 border-t-4 border-blue-500"></div>
+                </div>
+            </div>
+            <!-- SPA Section -->
+            <div id="spa" class="hidden">
+                <nav class="flex space-x-4 mb-4">
+                    <button id="home-tab" class="bg-gray-200 p-2 rounded hover:bg-gray-300 flex-1 text-center">Home</button>
+                    <button id="meals-tab" class="bg-gray-200 p-2 rounded hover:bg-gray-300 flex-1 text-center">Meals</button>
+                </nav>
+                <!-- Home Tab Content -->
+                <div id="home-content" class="bg-white rounded-lg shadow-md p-6">
+                    <button id="add-meal-btn" class="bg-blue-500 text-white p-2 rounded w-full hover:bg-blue-600">Add Meal</button>
+                    <form id="meal-form" class="hidden p-4 mt-4 bg-gray-50 rounded-lg">
+                        <div class="space-y-4">
+                            <div>
+                                <label for="meal-name" class="block font-medium">Meal Name:</label>
+                                <input type="text" id="meal-name" name="name" required class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label for="meal-description" class="block font-medium">Description:</label>
+                                <textarea id="meal-description" name="description" required class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 h-24"></textarea>
+                            </div>
+                            <div id="ingredients-section">
+                                <h3 class="text-lg font-bold">Ingredients</h3>
+                                <div id="ingredients-list" class="space-y-2"></div>
+                                <button type="button" id="add-ingredient-btn" class="bg-green-500 text-white p-2 rounded w-full hover:bg-green-600 mt-2">Add Ingredient</button>
+                            </div>
+                            <div class="flex space-x-4">
+                                <button type="submit" class="bg-blue-500 text-white p-2 rounded flex-1 hover:bg-blue-600">Create</button>
+                                <button type="button" id="cancel-meal-btn" class="bg-red-500 text-white p-2 rounded flex-1 hover:bg-red-600">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="ingredient-form-container" class="hidden mt-4 p-4 bg-white rounded-lg">
+                        <form id="ingredient-form" class="space-y-4">
+                            <div>
+                                <label for="ingredient-name" class="block font-medium">Name:</label>
+                                <input type="text" id="ingredient-name" name="ingredient-name" required class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label for="ingredient-description" class="block font-medium">Description:</label>
+                                <textarea id="ingredient-description" name="ingredient-description" required class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 h-24"></textarea>
+                            </div>
+                            <div class="flex space-x-2">
+                                <div class="flex-1">
+                                    <label for="ingredient-quantity" class="block font-medium">Quantity:</label>
+                                    <input type="number" id="ingredient-quantity" name="ingredient-quantity" step="0.1" required class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                                <div class="flex-1">
+                                    <label for="ingredient-unit" class="block font-medium">Unit:</label>
+                                    <select id="ingredient-unit" required class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        <option value="gram">gram</option>
+                                        <option value="cup">cup</option>
+                                        <option value="tablespoon">tablespoon</option>
+                                        <option value="morsel">morsel</option>
+                                        <option value="teaspoon">teaspoon</option>
+                                        <option value="pinch">pinch</option>
+                                        <option value="cooking spoon">cooking spoon</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex space-x-4">
+                                <button type="button" id="add-ingredient-submit" class="bg-blue-500 text-white p-2 rounded flex-1 hover:bg-blue-600">Add</button>
+                                <button type="button" id="cancel-ingredient" class="bg-red-500 text-white p-2 rounded flex-1 hover:bg-red-600">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="home-loading" class="hidden space-y-2 mt-4">
+                        <div class="bg-gray-200 h-6 w-full rounded"></div>
+                        <div class="bg-gray-200 h-6 w-full rounded"></div>
+                    </div>
+                    <div id="home-data" class="mt-4"></div>
+                </div>
+                <!-- Meals Tab Content -->
+                <div id="meals-content" class="hidden bg-white rounded-lg shadow-md p-6">
+                    <div id="meals-loading" class="hidden space-y-2">
+                        <div class="bg-gray-200 h-6 w-full rounded"></div>
+                        <div class="bg-gray-200 h-6 w-full rounded"></div>
+                        <div class="bg-gray-200 h-6 w-full rounded"></div>
+                        <div class="bg-gray-200 h-6 w-full rounded"></div>
+                        <div class="bg-gray-200 h-6 w-full rounded"></div>
+                        <div class="bg-gray-200 h-6 w-full rounded"></div>
+                        <div class="bg-gray-200 h-6 w-full rounded"></div>
+                        <div class="bg-gray-200 h-6 w-full rounded"></div>
+                        <div class="bg-gray-200 h-6 w-full rounded"></div>
+                        <div class="bg-gray-200 h-6 w-full rounded"></div>
+                    </div>
+                    <div id="meals-data" class="space-y-4"></div>
+                    <div id="pagination" class="flex justify-between mt-4">
+                        <button id="prev-page" disabled class="bg-gray-300 p-2 rounded flex-1 mr-2 hover:bg-gray-400">Previous</button>
+                        <button id="next-page" class="bg-blue-500 text-white p-2 rounded flex-1 ml-2 hover:bg-blue-600">Next</button>
+                    </div>
+                </div>
+                <!-- Meal Detail Content -->
+                <div id="meal-detail-content" class="hidden bg-white rounded-lg shadow-md p-6">
+                    <div id="meal-detail-loading" class="hidden space-y-2">
+                        <div class="bg-gray-200 h-6 w-full rounded"></div>
+                        <div class="bg-gray-200 h-6 w-full rounded"></div>
+                        <div class="bg-gray-200 h-6 w-full rounded"></div>
+                    </div>
+                    <div id="meal-detail-data" class="space-y-4"></div>
+                    <button id="back-to-meals" class="bg-gray-500 text-white p-2 rounded w-full hover:bg-gray-600 mt-4">Close</button>
+                </div>
+            </div>
+        </div>
+        <!-- Right Spacer (1/3) -->
+        <div class="w-1/3"></div>
+    </div>
+    <script>
+        // Formatting function
+        function formatDate(date, format = 'YYYY-MM-DD') {
+            if (!(date instanceof Date)) {
+                date = new Date(date);
+            }
+            if (isNaN(date)) {
+                return 'Invalid Date';
+            }
+            const pad = (num) => String(num).padStart(2, '0');
+            const tokens = {
+                YYYY: date.getFullYear(),
+                MM: pad(date.getMonth() + 1),
+                DD: pad(date.getDate()),
+                HH: pad(date.getHours()),
+                mm: pad(date.getMinutes()),
+                ss: pad(date.getSeconds())
+            };
+            return format.replace(/YYYY|MM|DD|HH|mm|ss/g, (match) => tokens[match]);
+        }
+
+        $(document).ready(function() {
+            let token = null;
+            let currentPage = 1;
+            const mealsPerPage = 10;
+            let addedIngredients = [];
+            let currentUsername = null;
+            let currentTab = 'home'; // Track the currently active tab
+            const $mealDetailContent = $("#meal-detail-content");
+
+            // Password Toggle Functionality
+            $('.toggle-password').on('click', function() {
+                const targetId = $(this).data('target');
+                const $input = $(`#${targetId}`);
+                const $icon = $(this).find('i');
+                if ($input.attr('type') === 'password') {
+                    $input.attr('type', 'text');
+                    $icon.removeClass('fa-eye').addClass('fa-eye-slash');
+                } else {
+                    $input.attr('type', 'password');
+                    $icon.removeClass('fa-eye-slash').addClass('fa-eye');
+                }
+            });
+
+            // Form Toggling
+            const $loginForm = $("#login-form");
+            const $createUserForm = $("#create-user-form");
+            const $createUserBtn = $("#create-user-btn");
+            $createUserBtn.on("click", function() {
+                $loginForm.addClass("hidden");
+                $createUserBtn.addClass("hidden");
+                $createUserForm.removeClass("hidden");
+            });
+
+            // Validation Functions
+            function validateLoginForm(username, password) {
+                let isValid = true;
+                $("#login-username-error").text(username ? "" : "Username is required");
+                $("#login-password-error").text(password ? "" : "Password is required");
+                if (!username || !password) isValid = false;
+                return isValid;
+            }
+
+            function validateCreateUserForm(email, username, password, confirmPassword) {
+                let isValid = true;
+                $("#create-email-error").text(email ? "" : "Email is required");
+                $("#create-username-error").text(username ? "" : "Username is required");
+                $("#create-password-error").text(password ? "" : "Password is required");
+                $("#create-confirm-password-error").text(
+                    confirmPassword ? (password === confirmPassword ? "" : "Passwords do not match") : "Confirm password is required"
+                );
+                if (!email || !username || !password || !confirmPassword || password !== confirmPassword) isValid = false;
+                return isValid;
+            }
+
+            // Login Form Submission
+            $loginForm.on("submit", async function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                const username = formData.get("username");
+                const password = formData.get("password");
+                if (!validateLoginForm(username, password)) return;
+                $("#auth-loading").removeClass("hidden");
+                try {
+                    const response = await axios.post("/api/v1/users/login", {
+                        username,
+                        password
+                    });
+                    token = response.data.access_token;
+                    currentUsername = username;
+                    $("#username-display").text(currentUsername);
+                    $("#user-info").removeClass("hidden");
+                    $("#auth-section").addClass("hidden");
+                    $("#spa").removeClass("hidden");
+                    loadHomeTab();
+                } catch (error) {
+                    $("#auth-error").text(error.response ? error.data : error.detail || "Login failed");
+                } finally {
+                    $("#auth-loading").addClass("hidden");
+                }
+            });
+
+            // Create User Form Submission
+            $createUserForm.on("submit", async function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                const email = formData.get("email");
+                const username = formData.get("username");
+                const password = formData.get("password");
+                const confirmPassword = formData.get("confirm-password");
+                if (!validateCreateUserForm(email, username, password, confirmPassword)) return;
+                $("#auth-loading").removeClass("hidden");
+                try {
+                    await axios.post("/api/v1/users/register", {
+                        email,
+                        username,
+                        password
+                    });
+                    alert("User created! Please log in.");
+                    $createUserForm.addClass("hidden");
+                    $loginForm.removeClass("hidden");
+                    $createUserBtn.removeClass("hidden");
+                } catch (error) {
+                    $("#auth-error").text(error.response ? error.data : error.detail || "User creation failed");
+                } finally {
+                    $("#auth-loading").addClass("hidden");
+                }
+            });
+
+            // SPA Navigation
+            const $homeTab = $("#home-tab");
+            const $mealsTab = $("#meals-tab");
+            const $homeContent = $("#home-content");
+            const $mealsContent = $("#meals-content");
+
+            $homeTab.on("click", function() {
+                currentTab = 'home';
+                $homeContent.removeClass("hidden");
+                $mealsContent.addClass("hidden");
+                $mealDetailContent.addClass("hidden");
+                loadHomeTab();
+            });
+
+            $mealsTab.on("click", function() {
+                currentTab = 'meals';
+                $homeContent.addClass("hidden");
+                $mealsContent.removeClass("hidden");
+                $mealDetailContent.addClass("hidden");
+                loadMealsTab();
+            });
+
+            // Event Delegation for Clickable Meal Entries
+            $("#home-data").on("click", ".meal-entry", function() {
+                const mealId = $(this).data("meal-id");
+                console.log(mealId);
+                loadMealDetails(mealId);
+            });
+
+            $("#meals-data").on("click", ".meal-entry", function() {
+                const mealId = $(this).data("meal-id");
+                loadMealDetails(mealId);
+            });
+
+            // Load Home Tab
+            async function loadHomeTab() {
+                $("#home-loading").removeClass("hidden");
+                $("#home-data").empty();
+                try {
+                    const response = await axios.get("/api/v1/meals/last", {
+                        headers: {
+                            "Authorization": `Bearer ${token}`
+                        }
+                    });
+                    const meal = response.data;
+                    console.log(meal);
+                    if (meal) {
+                        $("#home-data").html(`
+                            <div class="meal-entry bg-white p-4 rounded-lg shadow-md cursor-pointer" data-meal-id="${meal._id}">
+                                <h3 class="text-xl font-bold">${meal.name}</h3>
+                                <p class="text-gray-700">${meal.description}</p>
+                                <p class="text-gray-700 text-xs">${formatDate(new Date(meal.timestamp))}</p>
+                            </div>
+                        `);
+                    } else {
+                        $("#home-data").html("<p class='text-gray-700'>No meal entries yet.</p>");
+                    }
+                } catch (error) {
+                    $("#home-data").html("<p class='text-red-500'>Error loading last meal</p>");
+                } finally {
+                    $("#home-loading").addClass("hidden");
+                }
+            }
+
+            // Load Meals Tab
+            async function loadMealsTab() {
+                $("#meals-loading").removeClass("hidden");
+                $("#meals-data").empty();
+                try {
+                    const response = await axios.get(`/api/v1/meals/?page=${currentPage}&page_size=${mealsPerPage}`, {
+                        headers: {
+                            "Authorization": `Bearer ${token}`
+                        }
+                    });
+                    const meals = response.data.meals || [];
+                    $("#meals-data").html(meals.length > 0 ? meals.map(meal => `
+                        <div class="meal-entry bg-white p-4 rounded-lg shadow-md cursor-pointer" data-meal-id="${meal._id}">
+                            <h3 class="text-xl font-bold">${meal.name}</h3>
+                            <p class="text-gray-700">${meal.description}</p>
+                            <p class="text-gray-700 text-xs">${formatDate(new Date(meal.timestamp))}</p>
+                        </div>
+                    `).join("") : "<p class='text-gray-700'>No meals available.</p>");
+                    $("#prev-page").prop("disabled", currentPage === 1);
+                    $("#next-page").prop("disabled", meals.length < mealsPerPage);
+                } catch (error) {
+                    $("#meals-data").html("<p class='text-red-500'>Error loading meals</p>");
+                } finally {
+                    $("#meals-loading").addClass("hidden");
+                }
+            }
+
+            // Load Meal Details
+            async function loadMealDetails(mealId) {
+                $("#home-content").addClass("hidden");
+                $("#meals-content").addClass("hidden");
+                $mealDetailContent.removeClass("hidden");
+                $("#meal-detail-loading").removeClass("hidden");
+                $("#meal-detail-data").empty();
+                try {
+                    const response = await axios.get(`/api/v1/meals/${mealId}/detailed`, {
+                        headers: {
+                            "Authorization": `Bearer ${token}`
+                        }
+                    });
+                    const meal = response.data;
+                    const ingredientsList = meal.ingredients && meal.ingredients.length > 0 ?
+                        meal.ingredients.map(ing => `
+                            <li class="text-gray-700">${ing.name} - ${ing.quantity} ${ing.unit}: ${ing.description}</li>
+                        `).join("") :
+                        "<li class='text-gray-700'>No ingredients listed.</li>";
+                    const lastUpdated = meal.last_updated ? formatDate(new Date(meal.last_updated)) : "Never";
+                    $("#meal-detail-data").html(`
+                        <h3 class="text-2xl font-bold">${meal.name}</h3>
+                        <p class="text-gray-700">${meal.description}</p>
+                        <h4 class="text-lg font-bold mt-4">Ingredients:</h4>
+                        <ul class="list-disc pl-5">${ingredientsList}</ul>
+                        <p class="text-gray-700 mt-4"><strong>Timestamp:</strong> ${formatDate(new Date(meal.timestamp))}</p>
+                        <p class="text-gray-700"><strong>Author:</strong> ${meal.username}</p>
+                        <p class="text-gray-700"><strong>Last Updated:</strong> ${lastUpdated}</p>
+                    `);
+                } catch (error) {
+                    $("#meal-detail-data").html("<p class='text-red-500'>Error loading meal details</p>");
+                } finally {
+                    $("#meal-detail-loading").addClass("hidden");
+                }
+            }
+
+            // Back Button Functionality
+            $("#back-to-meals").on("click", function() {
+                $mealDetailContent.addClass("hidden");
+                if (currentTab === 'home') {
+                    $("#home-content").removeClass("hidden");
+                } else if (currentTab === 'meals') {
+                    $("#meals-content").removeClass("hidden");
+                }
+            });
+
+            // Pagination Controls
+            $("#prev-page").on("click", function() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    loadMealsTab();
+                }
+            });
+
+            $("#next-page").on("click", function() {
+                currentPage++;
+                loadMealsTab();
+            });
+
+            // Meal Form Handling
+            const $addMealBtn = $("#add-meal-btn");
+            const $mealForm = $("#meal-form");
+            const $cancelMealBtn = $("#cancel-meal-btn");
+            const $addIngredientBtn = $("#add-ingredient-btn");
+            const $ingredientFormContainer = $("#ingredient-form-container");
+            const $ingredientsList = $("#ingredients-list");
+            const $addIngredientSubmit = $("#add-ingredient-submit");
+            const $cancelIngredient = $("#cancel-ingredient");
+
+            $addMealBtn.on("click", function() {
+                $addMealBtn.addClass("hidden");
+                $mealForm.removeClass("hidden");
+            });
+
+            $cancelMealBtn.on("click", function() {
+                $mealForm.addClass("hidden");
+                $addMealBtn.removeClass("hidden");
+                $("#meal-name").val("");
+                $("#meal-description").val("");
+                addedIngredients = [];
+                $ingredientsList.empty();
+            });
+
+            $addIngredientBtn.on("click", function() {
+                $addIngredientBtn.prop("disabled", true);
+                $ingredientFormContainer.removeClass("hidden");
+            });
+
+            $cancelIngredient.on("click", function() {
+                $ingredientFormContainer.addClass("hidden");
+                $addIngredientBtn.prop("disabled", false);
+                $("#ingredient-name").val("");
+                $("#ingredient-description").val("");
+                $("#ingredient-quantity").val("");
+                $("#ingredient-unit").val("gram");
+            });
+
+            $addIngredientSubmit.on("click", function() {
+                const name = $("#ingredient-name").val().trim();
+                const description = $("#ingredient-description").val().trim();
+                const quantity = parseFloat($("#ingredient-quantity").val());
+                const unit = $("#ingredient-unit").val();
+                if (!name || !description || isNaN(quantity) || quantity <= 0) {
+                    alert("Please fill in all ingredient fields correctly.");
+                    return;
+                }
+                const ingredient = {
+                    name,
+                    description,
+                    quantity,
+                    unit
+                };
+                addedIngredients.push(ingredient);
+                const $ingredientBox = $(`
+                    <div class="bg-white p-2 rounded-lg shadow-md flex justify-between items-center">
+                        <span class="text-gray-700">${name} - ${quantity} ${unit}</span>
+                        <button type="button" class="remove-ingredient bg-red-500 text-white p-1 rounded hover:bg-red-600">Remove</button>
+                    </div>
+                `);
+                $ingredientsList.append($ingredientBox);
+                $ingredientBox.find(".remove-ingredient").on("click", function() {
+                    const index = addedIngredients.indexOf(ingredient);
+                    if (index > -1) {
+                        addedIngredients.splice(index, 1);
+                    }
+                    $ingredientBox.remove();
+                });
+                $ingredientFormContainer.addClass("hidden");
+                $addIngredientBtn.prop("disabled", false);
+                $("#ingredient-name").val("");
+                $("#ingredient-description").val("");
+                $("#ingredient-quantity").val("");
+                $("#ingredient-unit").val("gram");
+            });
+
+            $mealForm.on("submit", async function(e) {
+                e.preventDefault();
+                const name = $("#meal-name").val().trim();
+                const description = $("#meal-description").val().trim();
+                if (!name || !description) {
+                    alert("Please fill in all meal fields.");
+                    return;
+                }
+                const mealData = {
+                    name,
+                    description,
+                    ingredients: addedIngredients
+                };
+                try {
+                    await axios.post("/api/v1/meals/", mealData, {
+                        headers: {
+                            "Authorization": `Bearer ${token}`
+                        }
+                    });
+                    alert("Meal added successfully!");
+                    $mealForm.addClass("hidden");
+                    $addMealBtn.removeClass("hidden");
+                    $("#meal-name").val("");
+                    $("#meal-description").val("");
+                    addedIngredients = [];
+                    $ingredientsList.empty();
+                    loadHomeTab();
+                } catch (error) {
+                    alert("Error adding meal: " + (error.response ? error.data : error.detail || error.message));
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

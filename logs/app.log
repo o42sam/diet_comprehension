@@ -1,0 +1,1274 @@
+2025-04-12 17:54:16.225 | INFO     | __main__:lifespan:15 - Application startup completed
+2025-04-12 17:54:26.478 | ERROR    | __main__:global_exception_handler:28 - Unhandled exception: You must call FastAPILimiter.init in startup event of fastapi!
+Traceback (most recent call last):
+
+  File "C:\Program Files\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+           │         │     └ {'__name__': '__main__', '__doc__': None, '__package__': 'app', '__loader__': <_frozen_importlib_external.SourceFileLoader ob...
+           │         └ <code object <module> at 0x000001FC3DF028C0, file "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\main.py", line 1>
+           └ <function _run_code at 0x000001FC3DB1A4D0>
+
+  File "C:\Program Files\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+         │     └ {'__name__': '__main__', '__doc__': None, '__package__': 'app', '__loader__': <_frozen_importlib_external.SourceFileLoader ob...
+         └ <code object <module> at 0x000001FC3DF028C0, file "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\main.py", line 1>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\main.py", line 40, in <module>
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+    │       │   └ <fastapi.applications.FastAPI object at 0x000001FC3DB6EE00>
+    │       └ <function run at 0x000001FC41DA3370>
+    └ <module 'uvicorn' from 'C:\\Users\\ELITE SPACE FOOTBALL\\Documents\\mock_server\\.mock_server\\lib\\site-packages\\uvicorn\\_...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\main.py", line 579, in run
+    server.run()
+    │      └ <function Server.run at 0x000001FC41DA2CB0>
+    └ <uvicorn.server.Server object at 0x000001FC41DE15A0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\server.py", line 66, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ None
+           │       │   │    └ <function Server.serve at 0x000001FC41DA2D40>
+           │       │   └ <uvicorn.server.Server object at 0x000001FC41DE15A0>
+           │       └ <function run at 0x000001FC3DF8B880>
+           └ <module 'asyncio' from 'C:\\Program Files\\Python310\\lib\\asyncio\\__init__.py'>
+
+  File "C:\Program Files\Python310\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object Server.serve at 0x000001FC41D778B0>
+           │    └ <function BaseEventLoop.run_until_complete at 0x000001FC3FBB2050>
+           └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 633, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x000001FC3FC61CF0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 600, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001FC3FBB3AC0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 1896, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001FC3FB47490>
+    └ <Handle <TaskStepMethWrapper object at 0x000001FC41E51D20>()>
+
+  File "C:\Program Files\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskStepMethWrapper object at 0x000001FC41E51D20>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskStepMethWrapper object at 0x000001FC41E51D20>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskStepMethWrapper object at 0x000001FC41E51D20>()>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000001FC41DE1E10>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001FC41E51CC0>>
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001FC41E51...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+                 │    └ <fastapi.applications.FastAPI object at 0x000001FC3DB6EE00>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000001FC41DE1E10>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001FC41E51CC0>>
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001FC41E51...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001FC41E51CC0>>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001FC41E51...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001FC41E50BE0>
+          └ <fastapi.applications.FastAPI object at 0x000001FC3DB6EE00>
+
+> File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000001FC41E64820>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001FC41E51...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001FC41E50BB0>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001FC41E50BE0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000001FC41E64820>
+          │                            │    │    │     │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001FC41E51...
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    │    └ <starlette.requests.Request object at 0x000001FC41E511E0>
+          │                            │    └ <fastapi.routing.APIRouter object at 0x000001FC41C896C0>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001FC41E50BB0>
+          └ <function wrap_app_handling_exceptions at 0x000001FC408BFAC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001FC41E648B0>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001FC41E51...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <fastapi.routing.APIRouter object at 0x000001FC41C896C0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001FC41E648B0>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001FC41E51...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <bound method Router.app of <fastapi.routing.APIRouter object at 0x000001FC41C896C0>>
+          └ <fastapi.routing.APIRouter object at 0x000001FC41C896C0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001FC41E648B0>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001FC41E51...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x000001FC408E9000>
+          └ APIRoute(path='/api/v1/users/register', name='register', methods=['POST'])
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001FC41E648B0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001FC41E51...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x000001FC41C77D90>
+          └ APIRoute(path='/api/v1/users/register', name='register', methods=['POST'])
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001FC41E648B0>
+          │                            │    │        │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001FC41E51...
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    └ <starlette.requests.Request object at 0x000001FC41E51810>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x000001FC41E64940>
+          └ <function wrap_app_handling_exceptions at 0x000001FC408BFAC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001FC41E649D0>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001FC41E51...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <function request_response.<locals>.app.<locals>.app at 0x000001FC41E64940>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+                     │ └ <starlette.requests.Request object at 0x000001FC41E51810>
+                     └ <function get_request_handler.<locals>.app at 0x000001FC41C77AC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\routing.py", line 291, in app
+    solved_result = await solve_dependencies(
+                          └ <function solve_dependencies at 0x000001FC408BD120>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\dependencies\utils.py", line 638, in solve_dependencies
+    solved = await call(**solved_result.values)
+                   │      │             └ {'request': <starlette.requests.Request object at 0x000001FC41E51810>, 'response': <starlette.responses.Response object at 0x...
+                   │      └ SolvedDependency(values={'request': <starlette.requests.Request object at 0x000001FC41E51810>, 'response': <starlette.respons...
+                   └ <fastapi_limiter.depends.RateLimiter object at 0x000001FC411A0970>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi_limiter\depends.py", line 37, in __call__
+    raise Exception("You must call FastAPILimiter.init in startup event of fastapi!")
+
+Exception: You must call FastAPILimiter.init in startup event of fastapi!
+2025-04-12 18:06:22.859 | INFO     | __main__:lifespan:15 - Application startup completed
+2025-04-12 18:06:29.276 | INFO     | app.api.v1.user:register:12 - Registering user: sammyscarface
+2025-04-12 18:06:34.879 | INFO     | app.services.user:register_user:12 - User registered: sammyscarface
+2025-04-12 18:10:01.236 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-12 18:58:50.982 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-12 19:15:40.511 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-12 19:20:25.646 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-12 19:21:10.968 | INFO     | app.services.meal:create_meal_entry:9 - Meal created by user 67fa8f895a7f4e0712d33d9b: Fio Fio
+2025-04-12 19:31:19.873 | INFO     | __main__:lifespan:20 - Application shutdown completed
+2025-04-13 12:59:23.404 | INFO     | __main__:lifespan:15 - Application startup completed
+2025-04-13 13:06:56.779 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-13 13:35:43.433 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-13 13:44:36.308 | WARNING  | app.services.user:login_user:18 - Login failed for username: sammyscarface
+2025-04-13 13:44:45.150 | WARNING  | app.services.user:login_user:18 - Login failed for username: sammyscarface
+2025-04-13 13:45:19.059 | WARNING  | app.services.user:login_user:18 - Login failed for username: sammyscarface
+2025-04-13 13:46:53.159 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-13 13:49:31.666 | INFO     | __main__:lifespan:15 - Application startup completed
+2025-04-13 13:50:26.235 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-13 13:50:26.259 | ERROR    | __main__:global_exception_handler:28 - Unhandled exception: maximum recursion depth exceeded
+Traceback (most recent call last):
+
+  File "C:\Program Files\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+           │         │     └ {'__name__': '__main__', '__doc__': None, '__package__': 'app', '__loader__': <_frozen_importlib_external.SourceFileLoader ob...
+           │         └ <code object <module> at 0x000001CC4BB8E970, file "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\main.py", line 1>
+           └ <function _run_code at 0x000001CC4BB9A4D0>
+
+  File "C:\Program Files\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+         │     └ {'__name__': '__main__', '__doc__': None, '__package__': 'app', '__loader__': <_frozen_importlib_external.SourceFileLoader ob...
+         └ <code object <module> at 0x000001CC4BB8E970, file "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\main.py", line 1>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\main.py", line 40, in <module>
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+    │       │   └ <fastapi.applications.FastAPI object at 0x000001CC4BB7BD30>
+    │       └ <function run at 0x000001CC4FE0F490>
+    └ <module 'uvicorn' from 'C:\\Users\\ELITE SPACE FOOTBALL\\Documents\\mock_server\\.mock_server\\lib\\site-packages\\uvicorn\\_...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\main.py", line 579, in run
+    server.run()
+    │      └ <function Server.run at 0x000001CC4FE0EDD0>
+    └ <uvicorn.server.Server object at 0x000001CC4FE4DBA0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\server.py", line 66, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ None
+           │       │   │    └ <function Server.serve at 0x000001CC4FE0EE60>
+           │       │   └ <uvicorn.server.Server object at 0x000001CC4FE4DBA0>
+           │       └ <function run at 0x000001CC4BFEF6D0>
+           └ <module 'asyncio' from 'C:\\Program Files\\Python310\\lib\\asyncio\\__init__.py'>
+
+  File "C:\Program Files\Python310\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object Server.serve at 0x000001CC4FDE7840>
+           │    └ <function BaseEventLoop.run_until_complete at 0x000001CC4DC22050>
+           └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 633, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x000001CC4DCD1CF0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 600, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001CC4DC23AC0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 1896, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001CC4DBB7490>
+    └ <Handle Task.task_wakeup(<Future finis...al_tracker'))>)>
+
+  File "C:\Program Files\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finis...al_tracker'))>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finis...al_tracker'))>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finis...al_tracker'))>)>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000001CC4FE4E410>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001CC4FF1BEE0>>
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001CC4FF1B...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+                 │    └ <fastapi.applications.FastAPI object at 0x000001CC4BB7BD30>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000001CC4FE4E410>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001CC4FF1BEE0>>
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001CC4FF1B...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001CC4FF1BEE0>>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001CC4FF1B...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001CC4FED11E0>
+          └ <fastapi.applications.FastAPI object at 0x000001CC4BB7BD30>
+
+> File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000001CC4FED4700>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001CC4FF1B...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001CC4FED11B0>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001CC4FED11E0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000001CC4FED4700>
+          │                            │    │    │     │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001CC4FF1B...
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    │    └ <starlette.requests.Request object at 0x000001CC4FF1AC80>
+          │                            │    └ <fastapi.routing.APIRouter object at 0x000001CC4F210850>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001CC4FED11B0>
+          └ <function wrap_app_handling_exceptions at 0x000001CC4E92FAC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001CC4FED4670>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001CC4FF1B...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <fastapi.routing.APIRouter object at 0x000001CC4F210850>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001CC4FED4670>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001CC4FF1B...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <bound method Router.app of <fastapi.routing.APIRouter object at 0x000001CC4F210850>>
+          └ <fastapi.routing.APIRouter object at 0x000001CC4F210850>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001CC4FED4670>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001CC4FF1B...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x000001CC4E959000>
+          └ APIRoute(path='/api/v1/meals/last', name='get_last_meal_by_user', methods=['GET'])
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001CC4FED4670>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001CC4FF1B...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x000001CC4FD28280>
+          └ APIRoute(path='/api/v1/meals/last', name='get_last_meal_by_user', methods=['GET'])
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001CC4FED4670>
+          │                            │    │        │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001CC4FF1B...
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    └ <starlette.requests.Request object at 0x000001CC4FF1A740>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x000001CC50040550>
+          └ <function wrap_app_handling_exceptions at 0x000001CC4E92FAC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001CC50040670>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001CC4FF1B...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <function request_response.<locals>.app.<locals>.app at 0x000001CC50040550>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+                     │ └ <starlette.requests.Request object at 0x000001CC4FF1A740>
+                     └ <function get_request_handler.<locals>.app at 0x000001CC4FD28310>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x000001CC4E95AB00>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'user_id': '67fa8f895a7f4e0712d33d9b', 'db': AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_cl...
+                 │         └ <function get_last_meal_by_user at 0x000001CC4FCE6EF0>
+                 └ Dependant(path_params=[], query_params=[], header_params=[], cookie_params=[], body_params=[], dependencies=[Dependant(path_p...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\api\v1\meal.py", line 16, in get_last_meal_by_user
+    return await get_last_meal_by_user(db, user_id)
+                 │                     │   └ '67fa8f895a7f4e0712d33d9b'
+                 │                     └ AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, drive...
+                 └ <function get_last_meal_by_user at 0x000001CC4FCE6EF0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\api\v1\meal.py", line 16, in get_last_meal_by_user
+    return await get_last_meal_by_user(db, user_id)
+                 │                     │   └ AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, drive...
+                 │                     └ '67fa8f895a7f4e0712d33d9b'
+                 └ <function get_last_meal_by_user at 0x000001CC4FCE6EF0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\api\v1\meal.py", line 16, in get_last_meal_by_user
+    return await get_last_meal_by_user(db, user_id)
+                 │                     │   └ '67fa8f895a7f4e0712d33d9b'
+                 │                     └ AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, drive...
+                 └ <function get_last_meal_by_user at 0x000001CC4FCE6EF0>
+  [Previous line repeated 968 more times]
+
+RecursionError: maximum recursion depth exceeded
+2025-04-13 13:53:42.563 | INFO     | __main__:lifespan:15 - Application startup completed
+2025-04-13 13:54:06.889 | ERROR    | __main__:global_exception_handler:28 - Unhandled exception: maximum recursion depth exceeded
+Traceback (most recent call last):
+
+  File "C:\Program Files\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+           │         │     └ {'__name__': '__main__', '__doc__': None, '__package__': 'app', '__loader__': <_frozen_importlib_external.SourceFileLoader ob...
+           │         └ <code object <module> at 0x000002ABDA6AE970, file "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\main.py", line 1>
+           └ <function _run_code at 0x000002ABDA6BA4D0>
+
+  File "C:\Program Files\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+         │     └ {'__name__': '__main__', '__doc__': None, '__package__': 'app', '__loader__': <_frozen_importlib_external.SourceFileLoader ob...
+         └ <code object <module> at 0x000002ABDA6AE970, file "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\main.py", line 1>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\main.py", line 40, in <module>
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+    │       │   └ <fastapi.applications.FastAPI object at 0x000002ABDA69BD30>
+    │       └ <function run at 0x000002ABDE8CF520>
+    └ <module 'uvicorn' from 'C:\\Users\\ELITE SPACE FOOTBALL\\Documents\\mock_server\\.mock_server\\lib\\site-packages\\uvicorn\\_...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\main.py", line 579, in run
+    server.run()
+    │      └ <function Server.run at 0x000002ABDE8CEE60>
+    └ <uvicorn.server.Server object at 0x000002ABDE90DC30>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\server.py", line 66, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ None
+           │       │   │    └ <function Server.serve at 0x000002ABDE8CEEF0>
+           │       │   └ <uvicorn.server.Server object at 0x000002ABDE90DC30>
+           │       └ <function run at 0x000002ABDAB0F6D0>
+           └ <module 'asyncio' from 'C:\\Program Files\\Python310\\lib\\asyncio\\__init__.py'>
+
+  File "C:\Program Files\Python310\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object Server.serve at 0x000002ABDE8A7840>
+           │    └ <function BaseEventLoop.run_until_complete at 0x000002ABDC722050>
+           └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 633, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x000002ABDC7D1CF0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 600, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000002ABDC723AC0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 1896, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000002ABDC6C7490>
+    └ <Handle Task.task_wakeup(<Future finis...al_tracker'))>)>
+
+  File "C:\Program Files\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finis...al_tracker'))>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finis...al_tracker'))>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finis...al_tracker'))>)>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000002ABDE90E4A0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000002ABDE9928F0>>
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000002ABDE992...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+                 │    └ <fastapi.applications.FastAPI object at 0x000002ABDA69BD30>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000002ABDE90E4A0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000002ABDE9928F0>>
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000002ABDE992...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000002ABDE9928F0>>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000002ABDE992...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000002ABDE991270>
+          └ <fastapi.applications.FastAPI object at 0x000002ABDA69BD30>
+
+> File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000002ABDE9949D0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000002ABDE992...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000002ABDE991240>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000002ABDE991270>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000002ABDE9949D0>
+          │                            │    │    │     │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000002ABDE992...
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    │    └ <starlette.requests.Request object at 0x000002ABDE991EA0>
+          │                            │    └ <fastapi.routing.APIRouter object at 0x000002ABDE7B9060>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000002ABDE991240>
+          └ <function wrap_app_handling_exceptions at 0x000002ABDD3EFAC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000002ABDE994B80>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000002ABDE992...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <fastapi.routing.APIRouter object at 0x000002ABDE7B9060>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000002ABDE994B80>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000002ABDE992...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <bound method Router.app of <fastapi.routing.APIRouter object at 0x000002ABDE7B9060>>
+          └ <fastapi.routing.APIRouter object at 0x000002ABDE7B9060>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000002ABDE994B80>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000002ABDE992...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x000002ABDD419000>
+          └ APIRoute(path='/api/v1/meals/last', name='get_last_meal_by_user', methods=['GET'])
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000002ABDE994B80>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000002ABDE992...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x000002ABDE7E8280>
+          └ APIRoute(path='/api/v1/meals/last', name='get_last_meal_by_user', methods=['GET'])
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000002ABDE994B80>
+          │                            │    │        │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000002ABDE992...
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    └ <starlette.requests.Request object at 0x000002ABDE991BD0>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x000002ABDE994C10>
+          └ <function wrap_app_handling_exceptions at 0x000002ABDD3EFAC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000002ABDE994CA0>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000002ABDE992...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <function request_response.<locals>.app.<locals>.app at 0x000002ABDE994C10>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+                     │ └ <starlette.requests.Request object at 0x000002ABDE991BD0>
+                     └ <function get_request_handler.<locals>.app at 0x000002ABDE7E8310>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x000002ABDD41AB00>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'user_id': '67fa8f895a7f4e0712d33d9b', 'db': AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_cl...
+                 │         └ <function get_last_meal_by_user at 0x000002ABDE7A6EF0>
+                 └ Dependant(path_params=[], query_params=[], header_params=[], cookie_params=[], body_params=[], dependencies=[Dependant(path_p...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\api\v1\meal.py", line 16, in get_last_meal_by_user
+    return await get_last_meal_by_user(db, user_id)
+                 │                     │   └ '67fa8f895a7f4e0712d33d9b'
+                 │                     └ AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, drive...
+                 └ <function get_last_meal_by_user at 0x000002ABDE7A6EF0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\api\v1\meal.py", line 16, in get_last_meal_by_user
+    return await get_last_meal_by_user(db, user_id)
+                 │                     │   └ AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, drive...
+                 │                     └ '67fa8f895a7f4e0712d33d9b'
+                 └ <function get_last_meal_by_user at 0x000002ABDE7A6EF0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\api\v1\meal.py", line 16, in get_last_meal_by_user
+    return await get_last_meal_by_user(db, user_id)
+                 │                     │   └ '67fa8f895a7f4e0712d33d9b'
+                 │                     └ AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, drive...
+                 └ <function get_last_meal_by_user at 0x000002ABDE7A6EF0>
+  [Previous line repeated 968 more times]
+
+RecursionError: maximum recursion depth exceeded
+2025-04-13 13:54:50.693 | INFO     | __main__:lifespan:15 - Application startup completed
+2025-04-13 13:55:02.645 | ERROR    | __main__:global_exception_handler:28 - Unhandled exception: 'dict' object has no attribute 'name'
+Traceback (most recent call last):
+
+  File "C:\Program Files\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+           │         │     └ {'__name__': '__main__', '__doc__': None, '__package__': 'app', '__loader__': <_frozen_importlib_external.SourceFileLoader ob...
+           │         └ <code object <module> at 0x000001AFC4BFE970, file "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\main.py", line 1>
+           └ <function _run_code at 0x000001AFC4C0A4D0>
+
+  File "C:\Program Files\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+         │     └ {'__name__': '__main__', '__doc__': None, '__package__': 'app', '__loader__': <_frozen_importlib_external.SourceFileLoader ob...
+         └ <code object <module> at 0x000001AFC4BFE970, file "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\main.py", line 1>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\main.py", line 40, in <module>
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+    │       │   └ <fastapi.applications.FastAPI object at 0x000001AFC4BEBD30>
+    │       └ <function run at 0x000001AFC8D9F520>
+    └ <module 'uvicorn' from 'C:\\Users\\ELITE SPACE FOOTBALL\\Documents\\mock_server\\.mock_server\\lib\\site-packages\\uvicorn\\_...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\main.py", line 579, in run
+    server.run()
+    │      └ <function Server.run at 0x000001AFC8D9EE60>
+    └ <uvicorn.server.Server object at 0x000001AFC8DD9C00>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\server.py", line 66, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ None
+           │       │   │    └ <function Server.serve at 0x000001AFC8D9EEF0>
+           │       │   └ <uvicorn.server.Server object at 0x000001AFC8DD9C00>
+           │       └ <function run at 0x000001AFC505F6D0>
+           └ <module 'asyncio' from 'C:\\Program Files\\Python310\\lib\\asyncio\\__init__.py'>
+
+  File "C:\Program Files\Python310\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object Server.serve at 0x000001AFC8D77840>
+           │    └ <function BaseEventLoop.run_until_complete at 0x000001AFC6C72050>
+           └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 633, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x000001AFC6D21CF0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 600, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001AFC6C73AC0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 1896, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001AFC6C17490>
+    └ <Handle Task.task_wakeup(<Future finis...o Fio', ...}]>)>
+
+  File "C:\Program Files\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finis...o Fio', ...}]>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finis...o Fio', ...}]>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finis...o Fio', ...}]>)>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000001AFC8DDA470>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8E628C0>>
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8E62...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+                 │    └ <fastapi.applications.FastAPI object at 0x000001AFC4BEBD30>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000001AFC8DDA470>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8E628C0>>
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8E62...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8E628C0>>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8E62...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001AFC8E61240>
+          └ <fastapi.applications.FastAPI object at 0x000001AFC4BEBD30>
+
+> File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000001AFC8E649D0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8E62...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001AFC8E61210>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001AFC8E61240>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000001AFC8E649D0>
+          │                            │    │    │     │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8E62...
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    │    └ <starlette.requests.Request object at 0x000001AFC8E61E70>
+          │                            │    └ <fastapi.routing.APIRouter object at 0x000001AFC8C8A890>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001AFC8E61210>
+          └ <function wrap_app_handling_exceptions at 0x000001AFC790FAC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001AFC8E64B80>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8E62...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <fastapi.routing.APIRouter object at 0x000001AFC8C8A890>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001AFC8E64B80>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8E62...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <bound method Router.app of <fastapi.routing.APIRouter object at 0x000001AFC8C8A890>>
+          └ <fastapi.routing.APIRouter object at 0x000001AFC8C8A890>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001AFC8E64B80>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8E62...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x000001AFC7939000>
+          └ APIRoute(path='/api/v1/meals/last', name='get_last_meal_by_user', methods=['GET'])
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001AFC8E64B80>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8E62...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x000001AFC8CB8280>
+          └ APIRoute(path='/api/v1/meals/last', name='get_last_meal_by_user', methods=['GET'])
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001AFC8E64B80>
+          │                            │    │        │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8E62...
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    └ <starlette.requests.Request object at 0x000001AFC8E61BA0>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x000001AFC8E64C10>
+          └ <function wrap_app_handling_exceptions at 0x000001AFC790FAC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001AFC8E64CA0>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8E62...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <function request_response.<locals>.app.<locals>.app at 0x000001AFC8E64C10>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+                     │ └ <starlette.requests.Request object at 0x000001AFC8E61BA0>
+                     └ <function get_request_handler.<locals>.app at 0x000001AFC8CB8310>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x000001AFC793AB00>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'user_id': '67fa8f895a7f4e0712d33d9b', 'db': AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_cl...
+                 │         └ <function get_last_meal_by_user at 0x000001AFC8C76EF0>
+                 └ Dependant(path_params=[], query_params=[], header_params=[], cookie_params=[], body_params=[], dependencies=[Dependant(path_p...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\api\v1\meal.py", line 16, in get_last_meal_by_user
+    return await get_last_meal_entry_by_user(db, user_id)
+                 │                           │   └ '67fa8f895a7f4e0712d33d9b'
+                 │                           └ AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, drive...
+                 └ <function get_last_meal_entry_by_user at 0x000001AFC8C76C20>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\services\meal.py", line 15, in get_last_meal_entry_by_user
+    logger.info(f"Last meal entry for user {user_id}: {meal.name}")
+    │      └ <function Logger.info at 0x000001AFC8A9C550>
+    └ <loguru.logger handlers=[(id=1, level=20, sink=<stdout>), (id=2, level=10, sink='logs/app.log')]>
+
+AttributeError: 'dict' object has no attribute 'name'
+2025-04-13 14:23:00.662 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-13 14:23:00.690 | ERROR    | __main__:global_exception_handler:28 - Unhandled exception: 'dict' object has no attribute 'name'
+Traceback (most recent call last):
+
+  File "C:\Program Files\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+           │         │     └ {'__name__': '__main__', '__doc__': None, '__package__': 'app', '__loader__': <_frozen_importlib_external.SourceFileLoader ob...
+           │         └ <code object <module> at 0x000001AFC4BFE970, file "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\main.py", line 1>
+           └ <function _run_code at 0x000001AFC4C0A4D0>
+
+  File "C:\Program Files\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+         │     └ {'__name__': '__main__', '__doc__': None, '__package__': 'app', '__loader__': <_frozen_importlib_external.SourceFileLoader ob...
+         └ <code object <module> at 0x000001AFC4BFE970, file "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\main.py", line 1>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\main.py", line 40, in <module>
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+    │       │   └ <fastapi.applications.FastAPI object at 0x000001AFC4BEBD30>
+    │       └ <function run at 0x000001AFC8D9F520>
+    └ <module 'uvicorn' from 'C:\\Users\\ELITE SPACE FOOTBALL\\Documents\\mock_server\\.mock_server\\lib\\site-packages\\uvicorn\\_...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\main.py", line 579, in run
+    server.run()
+    │      └ <function Server.run at 0x000001AFC8D9EE60>
+    └ <uvicorn.server.Server object at 0x000001AFC8DD9C00>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\server.py", line 66, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ None
+           │       │   │    └ <function Server.serve at 0x000001AFC8D9EEF0>
+           │       │   └ <uvicorn.server.Server object at 0x000001AFC8DD9C00>
+           │       └ <function run at 0x000001AFC505F6D0>
+           └ <module 'asyncio' from 'C:\\Program Files\\Python310\\lib\\asyncio\\__init__.py'>
+
+  File "C:\Program Files\Python310\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object Server.serve at 0x000001AFC8D77840>
+           │    └ <function BaseEventLoop.run_until_complete at 0x000001AFC6C72050>
+           └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 633, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x000001AFC6D21CF0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 600, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001AFC6C73AC0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 1896, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001AFC6C17490>
+    └ <Handle Task.task_wakeup(<Future finis...o Fio', ...}]>)>
+
+  File "C:\Program Files\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finis...o Fio', ...}]>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finis...o Fio', ...}]>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finis...o Fio', ...}]>)>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000001AFC8DDA470>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8FD9DB0>>
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8FD9...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+                 │    └ <fastapi.applications.FastAPI object at 0x000001AFC4BEBD30>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000001AFC8DDA470>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8FD9DB0>>
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8FD9...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8FD9DB0>>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8FD9...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001AFC8E61240>
+          └ <fastapi.applications.FastAPI object at 0x000001AFC4BEBD30>
+
+> File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000001AFC9222DD0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8FD9...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001AFC8E61210>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001AFC8E61240>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000001AFC9222DD0>
+          │                            │    │    │     │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8FD9...
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    │    └ <starlette.requests.Request object at 0x000001AFC8FD9BD0>
+          │                            │    └ <fastapi.routing.APIRouter object at 0x000001AFC8C8A890>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001AFC8E61210>
+          └ <function wrap_app_handling_exceptions at 0x000001AFC790FAC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001AFC9222E60>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8FD9...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <fastapi.routing.APIRouter object at 0x000001AFC8C8A890>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001AFC9222E60>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8FD9...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <bound method Router.app of <fastapi.routing.APIRouter object at 0x000001AFC8C8A890>>
+          └ <fastapi.routing.APIRouter object at 0x000001AFC8C8A890>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001AFC9222E60>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8FD9...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x000001AFC7939000>
+          └ APIRoute(path='/api/v1/meals/last', name='get_last_meal_by_user', methods=['GET'])
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001AFC9222E60>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8FD9...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x000001AFC8CB8280>
+          └ APIRoute(path='/api/v1/meals/last', name='get_last_meal_by_user', methods=['GET'])
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001AFC9222E60>
+          │                            │    │        │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8FD9...
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    └ <starlette.requests.Request object at 0x000001AFC8FD9750>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x000001AFC9222F80>
+          └ <function wrap_app_handling_exceptions at 0x000001AFC790FAC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001AFC9223010>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8FD9...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <function request_response.<locals>.app.<locals>.app at 0x000001AFC9222F80>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+                     │ └ <starlette.requests.Request object at 0x000001AFC8FD9750>
+                     └ <function get_request_handler.<locals>.app at 0x000001AFC8CB8310>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x000001AFC793AB00>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'user_id': '67fa8f895a7f4e0712d33d9b', 'db': AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_cl...
+                 │         └ <function get_last_meal_by_user at 0x000001AFC8C76EF0>
+                 └ Dependant(path_params=[], query_params=[], header_params=[], cookie_params=[], body_params=[], dependencies=[Dependant(path_p...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\api\v1\meal.py", line 16, in get_last_meal_by_user
+    return await get_last_meal_entry_by_user(db, user_id)
+                 │                           │   └ '67fa8f895a7f4e0712d33d9b'
+                 │                           └ AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, drive...
+                 └ <function get_last_meal_entry_by_user at 0x000001AFC8C76C20>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\services\meal.py", line 15, in get_last_meal_entry_by_user
+    logger.info(f"Last meal entry for user {user_id}: {meal.name}")
+    │      └ <function Logger.info at 0x000001AFC8A9C550>
+    └ <loguru.logger handlers=[(id=1, level=20, sink=<stdout>), (id=2, level=10, sink='logs/app.log')]>
+
+AttributeError: 'dict' object has no attribute 'name'
+2025-04-13 15:03:39.592 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-13 15:03:39.621 | ERROR    | __main__:global_exception_handler:28 - Unhandled exception: 'dict' object has no attribute 'name'
+Traceback (most recent call last):
+
+  File "C:\Program Files\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+           │         │     └ {'__name__': '__main__', '__doc__': None, '__package__': 'app', '__loader__': <_frozen_importlib_external.SourceFileLoader ob...
+           │         └ <code object <module> at 0x000001AFC4BFE970, file "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\main.py", line 1>
+           └ <function _run_code at 0x000001AFC4C0A4D0>
+
+  File "C:\Program Files\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+         │     └ {'__name__': '__main__', '__doc__': None, '__package__': 'app', '__loader__': <_frozen_importlib_external.SourceFileLoader ob...
+         └ <code object <module> at 0x000001AFC4BFE970, file "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\main.py", line 1>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\main.py", line 40, in <module>
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+    │       │   └ <fastapi.applications.FastAPI object at 0x000001AFC4BEBD30>
+    │       └ <function run at 0x000001AFC8D9F520>
+    └ <module 'uvicorn' from 'C:\\Users\\ELITE SPACE FOOTBALL\\Documents\\mock_server\\.mock_server\\lib\\site-packages\\uvicorn\\_...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\main.py", line 579, in run
+    server.run()
+    │      └ <function Server.run at 0x000001AFC8D9EE60>
+    └ <uvicorn.server.Server object at 0x000001AFC8DD9C00>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\server.py", line 66, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ None
+           │       │   │    └ <function Server.serve at 0x000001AFC8D9EEF0>
+           │       │   └ <uvicorn.server.Server object at 0x000001AFC8DD9C00>
+           │       └ <function run at 0x000001AFC505F6D0>
+           └ <module 'asyncio' from 'C:\\Program Files\\Python310\\lib\\asyncio\\__init__.py'>
+
+  File "C:\Program Files\Python310\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object Server.serve at 0x000001AFC8D77840>
+           │    └ <function BaseEventLoop.run_until_complete at 0x000001AFC6C72050>
+           └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 633, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x000001AFC6D21CF0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 600, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001AFC6C73AC0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 1896, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001AFC6C17490>
+    └ <Handle Task.task_wakeup(<Future finis...o Fio', ...}]>)>
+
+  File "C:\Program Files\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finis...o Fio', ...}]>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finis...o Fio', ...}]>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finis...o Fio', ...}]>)>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000001AFC8DDA470>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8EB2920>>
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8EB2...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+                 │    └ <fastapi.applications.FastAPI object at 0x000001AFC4BEBD30>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x000001AFC8DDA470>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8EB2920>>
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8EB2...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8EB2920>>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8EB2...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001AFC8E61240>
+          └ <fastapi.applications.FastAPI object at 0x000001AFC4BEBD30>
+
+> File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000001AFC8FB8790>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8EB2...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001AFC8E61210>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001AFC8E61240>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000001AFC8FB8790>
+          │                            │    │    │     │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8EB2...
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    │    └ <starlette.requests.Request object at 0x000001AFC8EB2500>
+          │                            │    └ <fastapi.routing.APIRouter object at 0x000001AFC8C8A890>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001AFC8E61210>
+          └ <function wrap_app_handling_exceptions at 0x000001AFC790FAC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001AFC8FB8700>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8EB2...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <fastapi.routing.APIRouter object at 0x000001AFC8C8A890>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001AFC8FB8700>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8EB2...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <bound method Router.app of <fastapi.routing.APIRouter object at 0x000001AFC8C8A890>>
+          └ <fastapi.routing.APIRouter object at 0x000001AFC8C8A890>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001AFC8FB8700>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8EB2...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x000001AFC7939000>
+          └ APIRoute(path='/api/v1/meals/last', name='get_last_meal_by_user', methods=['GET'])
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001AFC8FB8700>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8EB2...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x000001AFC8CB8280>
+          └ APIRoute(path='/api/v1/meals/last', name='get_last_meal_by_user', methods=['GET'])
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001AFC8FB8700>
+          │                            │    │        │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8EB2...
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    └ <starlette.requests.Request object at 0x000001AFC8EB2560>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x000001AFC8FB85E0>
+          └ <function wrap_app_handling_exceptions at 0x000001AFC790FAC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001AFC8E64700>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x000001AFC8EB2...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <function request_response.<locals>.app.<locals>.app at 0x000001AFC8FB85E0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+                     │ └ <starlette.requests.Request object at 0x000001AFC8EB2560>
+                     └ <function get_request_handler.<locals>.app at 0x000001AFC8CB8310>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x000001AFC793AB00>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'user_id': '67fa8f895a7f4e0712d33d9b', 'db': AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_cl...
+                 │         └ <function get_last_meal_by_user at 0x000001AFC8C76EF0>
+                 └ Dependant(path_params=[], query_params=[], header_params=[], cookie_params=[], body_params=[], dependencies=[Dependant(path_p...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\api\v1\meal.py", line 16, in get_last_meal_by_user
+    return await get_last_meal_entry_by_user(db, user_id)
+                 │                           │   └ '67fa8f895a7f4e0712d33d9b'
+                 │                           └ AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, drive...
+                 └ <function get_last_meal_entry_by_user at 0x000001AFC8C76C20>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\services\meal.py", line 15, in get_last_meal_entry_by_user
+    logger.info(f"Last meal entry for user {user_id}: {meal}")
+    │      └ <function Logger.info at 0x000001AFC8A9C550>
+    └ <loguru.logger handlers=[(id=1, level=20, sink=<stdout>), (id=2, level=10, sink='logs/app.log')]>
+
+AttributeError: 'dict' object has no attribute 'name'
+2025-04-13 15:25:32.867 | INFO     | __main__:lifespan:15 - Application startup completed
+2025-04-13 15:26:13.973 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-13 15:26:14.054 | ERROR    | app.services.meal:get_last_meal_entry_by_user:37 - Validation error for meal data: 1 validation error for MealOut
+id
+  Field required [type=missing, input_value={'_id': ObjectId('67faa10...fa8f895a7f4e0712d33d9b'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-04-13 15:36:19.392 | INFO     | __main__:lifespan:20 - Application shutdown completed
+2025-04-13 15:36:26.820 | INFO     | __main__:lifespan:15 - Application startup completed
+2025-04-13 15:37:28.249 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-13 15:37:28.277 | ERROR    | app.services.meal:get_last_meal_entry_by_user:37 - Validation error for meal data: 1 validation error for MealOut
+id
+  Field required [type=missing, input_value={'_id': ObjectId('67faa10...fa8f895a7f4e0712d33d9b'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-04-13 15:42:55.597 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-13 15:42:55.629 | ERROR    | app.services.meal:get_last_meal_entry_by_user:37 - Validation error for meal data: 1 validation error for MealOut
+id
+  Field required [type=missing, input_value={'_id': ObjectId('67faa10...fa8f895a7f4e0712d33d9b'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-04-13 15:44:59.593 | ERROR    | app.services.meal:get_last_meal_entry_by_user:37 - Validation error for meal data: 1 validation error for MealOut
+id
+  Field required [type=missing, input_value={'_id': ObjectId('67fbbfd... 13, 13, 44, 55, 43000)}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-04-13 15:56:18.496 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-13 15:56:18.531 | ERROR    | app.services.meal:get_last_meal_entry_by_user:37 - Validation error for meal data: 1 validation error for MealOut
+id
+  Field required [type=missing, input_value={'_id': ObjectId('67fbbfd... 13, 13, 44, 55, 43000)}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-04-13 15:56:27.999 | ERROR    | app.services.meal:get_last_meal_entry_by_user:37 - Validation error for meal data: 1 validation error for MealOut
+id
+  Field required [type=missing, input_value={'_id': ObjectId('67fbbfd... 13, 13, 44, 55, 43000)}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-04-13 15:59:02.217 | INFO     | __main__:lifespan:20 - Application shutdown completed
+2025-04-13 15:59:12.185 | INFO     | __main__:lifespan:15 - Application startup completed
+2025-04-13 15:59:27.364 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-13 15:59:27.393 | ERROR    | app.services.meal:get_last_meal_entry_by_user:39 - Validation error for meal data: 1 validation error for MealOut
+_id
+  Field required [type=missing, input_value={'name': 'Fio Fio', 'desc...fbbfd7256565348992c0e3'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-04-13 16:14:38.118 | INFO     | __main__:lifespan:15 - Application startup completed
+2025-04-13 16:16:29.682 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-13 16:16:29.714 | INFO     | app.services.meal:get_last_meal_entry_by_user:31 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Fio Fio
+2025-04-13 16:20:34.501 | ERROR    | app.services.meal:create_meal_entry:22 - Validation error for meal data: 1 validation error for MealOut
+_id
+  Input should be a valid string [type=string_type, input_value=ObjectId('67fbc83258b9bae910e4582c'), input_type=ObjectId]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-04-13 16:20:44.543 | INFO     | app.services.meal:get_last_meal_entry_by_user:31 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Jollof Rice
+2025-04-13 16:21:38.068 | INFO     | __main__:lifespan:20 - Application shutdown completed
+2025-04-13 21:57:29.915 | INFO     | __main__:lifespan:15 - Application startup completed
+2025-04-13 21:58:50.960 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-13 21:58:51.004 | INFO     | app.services.meal:get_last_meal_entry_by_user:31 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Jollof Rice
+2025-04-13 22:58:00.265 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-13 22:58:00.319 | INFO     | app.services.meal:get_last_meal_entry_by_user:31 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Jollof Rice
+2025-04-13 23:04:25.356 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-13 23:04:25.384 | INFO     | app.services.meal:get_last_meal_entry_by_user:31 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Jollof Rice
+2025-04-14 06:20:09.956 | INFO     | __main__:lifespan:15 - Application startup completed
+2025-04-14 06:21:44.156 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-14 06:21:44.172 | INFO     | app.services.meal:get_last_meal_entry_by_user:32 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Jollof Rice
+2025-04-14 06:22:18.422 | INFO     | app.services.meal:get_last_meal_entry_by_user:32 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Jollof Rice
+2025-04-14 06:25:22.034 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-14 06:25:22.066 | INFO     | app.services.meal:get_last_meal_entry_by_user:32 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Jollof Rice
+2025-04-14 06:27:00.093 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-14 06:27:00.125 | INFO     | app.services.meal:get_last_meal_entry_by_user:32 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Jollof Rice
+2025-04-14 06:27:24.871 | INFO     | app.services.meal:get_last_meal_entry_by_user:32 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Jollof Rice
+2025-04-14 06:31:23.555 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-14 06:31:23.583 | INFO     | app.services.meal:get_last_meal_entry_by_user:32 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Jollof Rice
+2025-04-14 06:32:14.446 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-14 06:32:14.474 | INFO     | app.services.meal:get_last_meal_entry_by_user:32 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Jollof Rice
+2025-04-14 08:34:46.595 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-14 08:34:46.664 | INFO     | app.services.meal:get_last_meal_entry_by_user:32 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Jollof Rice
+2025-04-14 08:37:02.915 | INFO     | app.services.meal:get_last_meal_entry_by_user:32 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Jollof Rice
+2025-04-14 08:40:29.009 | ERROR    | app.services.meal:create_meal_entry:23 - Validation error for meal data: 1 validation error for MealOut
+_id
+  Input should be a valid string [type=string_type, input_value=ObjectId('67fcaddc16df35129b6ad801'), input_type=ObjectId]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-04-14 08:42:09.380 | ERROR    | app.services.meal:create_meal_entry:23 - Validation error for meal data: 1 validation error for MealOut
+_id
+  Input should be a valid string [type=string_type, input_value=ObjectId('67fcae4116df35129b6ad803'), input_type=ObjectId]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-04-14 09:29:06.243 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-14 09:29:06.272 | INFO     | app.services.meal:get_last_meal_entry_by_user:32 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Custard and Moi Moi
+2025-04-14 10:34:10.530 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-14 10:34:10.565 | INFO     | app.services.meal:get_last_meal_entry_by_user:32 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Custard and Moi Moi
+2025-04-14 10:36:38.398 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-14 10:36:38.429 | INFO     | app.services.meal:get_last_meal_entry_by_user:32 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Custard and Moi Moi
+2025-04-14 10:40:39.233 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-14 10:40:39.264 | INFO     | app.services.meal:get_last_meal_entry_by_user:32 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Custard and Moi Moi
+2025-04-14 10:57:35.723 | INFO     | app.services.meal:get_last_meal_entry_by_user:32 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Custard and Moi Moi
+2025-04-14 10:58:26.084 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-14 10:58:26.109 | INFO     | app.services.meal:get_last_meal_entry_by_user:32 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Custard and Moi Moi
+2025-04-14 11:00:35.741 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-14 11:00:35.776 | INFO     | app.services.meal:get_last_meal_entry_by_user:32 - Last meal entry for user 67fa8f895a7f4e0712d33d9b: Custard and Moi Moi
+2025-04-14 11:12:31.033 | INFO     | __main__:lifespan:15 - Application startup completed
+2025-04-14 11:13:37.301 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-14 11:13:37.329 | ERROR    | app.services.meal:get_last_meal_entry_by_user:42 - Validation error for meal data: 1 validation error for MealListItem
+ingredients.0.ingredient_id
+  Field required [type=missing, input_value={'name': 'Custard', 'desc...'gram', 'quantity': 1.0}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-04-14 11:16:56.193 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-14 11:16:56.224 | ERROR    | app.services.meal:get_last_meal_entry_by_user:42 - Validation error for meal data: 1 validation error for MealListItem
+ingredients.0.ingredient_id
+  Field required [type=missing, input_value={'name': 'Custard', 'desc...'gram', 'quantity': 1.0}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-04-14 11:22:18.134 | INFO     | __main__:lifespan:20 - Application shutdown completed

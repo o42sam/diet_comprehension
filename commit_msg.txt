@@ -1,0 +1,9 @@
+Initialized git
+
+Project wasn't previously tracked so there has been a lot added and removed.
+Current codebase features:
+- Meal, User, and Ingredient endpoints, models, services, and bespoke exceptions
+- Redis server disabled for technical reasons in dev environment
+- A static html for same-origin testing
+- Constants for mapping nutrients to ensure data consistency
+etc

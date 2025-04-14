@@ -1,0 +1,15 @@
+NUTRIENT_UNITS = {
+    "Energy": "kcal",
+    "Protein": "g",
+    "Total lipid (fat)": "g",
+    "Carbohydrate, by difference": "g",
+    "Fiber, total dietary": "g",
+    "Sugars, total": "g",
+    "Calcium, Ca": "mg",
+    "Iron, Fe": "mg",
+    "Sodium, Na": "mg",
+    "Vitamin C, total ascorbic acid": "mg",
+    "Vitamin A, IU": "IU",
+    "Cholesterol": "mg",
+    "Fatty acids, total saturated": "g",
+}
