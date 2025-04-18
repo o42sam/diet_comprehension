@@ -97,7 +97,7 @@
                             </div>
                             <div id="ingredients-section">
                                 <h3 class="text-lg font-bold">Ingredients</h3>
-                                <div id="ingredients-list" class="space-y-2"></div>
+                                <div id="ingredients-list" class="flex flex-wrap gap-2"></div>
                                 <button type="button" id="add-ingredient-btn" class="bg-green-500 text-white p-2 rounded w-full hover:bg-green-600 mt-2">Add Ingredient</button>
                             </div>
                             <div class="flex space-x-4">
@@ -106,11 +106,12 @@
                             </div>
                         </div>
                     </form>
-                    <div id="ingredient-form-container" class="hidden mt-4 p-4 bg-white rounded-lg">
+                    <div id="ingredient-form-container" class="hidden mt-4 p-4 bg-white rounded-lg relative">
                         <form id="ingredient-form" class="space-y-4">
-                            <div>
+                            <div class="relative">
                                 <label for="ingredient-name" class="block font-medium">Name:</label>
                                 <input type="text" id="ingredient-name" name="ingredient-name" required class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <div id="suggestions" class="absolute z-10 bg-white border rounded shadow-md mt-1 w-full hidden"></div>
                             </div>
                             <div>
                                 <label for="ingredient-description" class="block font-medium">Description:</label>
@@ -133,6 +134,11 @@
                                         <option value="cooking spoon">cooking spoon</option>
                                     </select>
                                 </div>
+                            </div>
+                            <div id="selected-nutrients" class="flex flex-wrap gap-2 mb-2"></div>
+                            <div id="nutrient-select-container" class="flex space-x-2">
+                                <select id="nutrient-select" class="flex-1 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"></select>
+                                <button type="button" id="add-nutrient-btn" class="bg-green-500 text-white p-2 rounded hover:bg-green-600">Add Nutrient</button>
                             </div>
                             <div class="flex space-x-4">
                                 <button type="button" id="add-ingredient-submit" class="bg-blue-500 text-white p-2 rounded flex-1 hover:bg-blue-600">Add</button>
@@ -208,8 +214,11 @@
             const mealsPerPage = 10;
             let addedIngredients = [];
             let currentUsername = null;
-            let currentTab = 'home'; // Track the currently active tab
+            let currentTab = 'home';
             const $mealDetailContent = $("#meal-detail-content");
+            let selectedIngredient = null;
+            let selectedNutrients = [];
+            let availableNutrients = [];
 
             // Password Toggle Functionality
             $('.toggle-password').on('click', function() {
@@ -335,7 +344,6 @@
             // Event Delegation for Clickable Meal Entries
             $("#home-data").on("click", ".meal-entry", function() {
                 const mealId = $(this).data("meal-id");
-                console.log(mealId);
                 loadMealDetails(mealId);
             });
 
@@ -355,7 +363,6 @@
                         }
                     });
                     const meal = response.data;
-                    console.log(meal);
                     if (meal) {
                         $("#home-data").html(`
                             <div class="meal-entry bg-white p-4 rounded-lg shadow-md cursor-pointer" data-meal-id="${meal._id}">
@@ -487,6 +494,13 @@
             $addIngredientBtn.on("click", function() {
                 $addIngredientBtn.prop("disabled", true);
                 $ingredientFormContainer.removeClass("hidden");
+                fetchNutrients();
+                selectedIngredient = null;
+                selectedNutrients = [];
+                $("#ingredient-name").val("");
+                $("#ingredient-description").val("").prop("disabled", false);
+                $("#selected-nutrients").empty();
+                $("#nutrient-select-container").removeClass("hidden");
             });
 
             $cancelIngredient.on("click", function() {
@@ -496,28 +510,124 @@
                 $("#ingredient-description").val("");
                 $("#ingredient-quantity").val("");
                 $("#ingredient-unit").val("gram");
+                selectedIngredient = null;
+                selectedNutrients = [];
             });
 
+            // Autocomplete for ingredient name
+            $("#ingredient-name").on("input", async function() {
+                const query = $(this).val().trim();
+                if (query.length < 2) {
+                    $("#suggestions").addClass("hidden").empty();
+                    return;
+                }
+                try {
+                    const response = await axios.get(`/api/v1/ingredients/search?q=${encodeURIComponent(query)}`, {
+                        headers: {
+                            "Authorization": `Bearer ${token}`
+                        }
+                    });
+                    const ingredients = response.data;
+                    if (ingredients.length > 0) {
+                        $("#suggestions").removeClass("hidden").html(ingredients.map(ing => `
+                            <div class="p-2 hover:bg-gray-100 cursor-pointer suggestion" data-ingredient='${JSON.stringify(ing)}'>${ing.name}</div>
+                        `).join(""));
+                    } else {
+                        $("#suggestions").addClass("hidden").empty();
+                    }
+                } catch (error) {
+                    console.error("Error fetching suggestions:", error);
+                }
+            });
+
+            // Handle suggestion selection
+            $(document).on("click", ".suggestion", function() {
+                const ingredient = JSON.parse($(this).data("ingredient"));
+                selectedIngredient = ingredient;
+                $("#ingredient-name").val(ingredient.name);
+                $("#ingredient-description").val(ingredient.description).prop("disabled", true);
+                $("#selected-nutrients").html(ingredient.nutrients.map(nut => `
+                    <div class="bg-gray-300 text-gray-700 p-1 rounded flex items-center text-sm">
+                        <span>${nut.name}</span>
+                    </div>
+                `).join(""));
+                $("#nutrient-select-container").addClass("hidden");
+                $("#suggestions").addClass("hidden").empty();
+            });
+
+            // Reset form if name changes after suggestion selection
+            $("#ingredient-name").on("change", function() {
+                if (selectedIngredient && $(this).val() !== selectedIngredient.name) {
+                    selectedIngredient = null;
+                    $("#ingredient-description").val("").prop("disabled", false);
+                    $("#selected-nutrients").empty();
+                    $("#nutrient-select-container").removeClass("hidden");
+                }
+            });
+
+            // Fetch nutrients for select field
+            async function fetchNutrients() {
+                try {
+                    const response = await axios.get("/api/v1/nutrients", {
+                        headers: {
+                            "Authorization": `Bearer ${token}`
+                        }
+                    });
+                    availableNutrients = response.data;
+                    $("#nutrient-select").html(availableNutrients.map(nut => `<option value="${nut.name}">${nut.name}</option>`).join(""));
+                } catch (error) {
+                    console.error("Error fetching nutrients:", error);
+                }
+            }
+
+            // Add nutrient for new ingredients
+            $("#add-nutrient-btn").on("click", function() {
+                if (selectedIngredient) return; // No adding nutrients for existing ingredients
+                const nutrientName = $("#nutrient-select").val();
+                if (!selectedNutrients.includes(nutrientName)) {
+                    selectedNutrients.push(nutrientName);
+                    const $nutrientBox = $(`
+                        <div class="bg-blue-100 text-blue-700 p-1 rounded flex items-center text-sm">
+                            <span>${nutrientName}</span>
+                            <button type="button" class="remove-nutrient ml-2 text-red-500 hover:text-red-700"><i class="fas fa-times"></i></button>
+                        </div>
+                    `);
+                    $("#selected-nutrients").append($nutrientBox);
+                    $nutrientBox.find(".remove-nutrient").on("click", function() {
+                        selectedNutrients = selectedNutrients.filter(n => n !== nutrientName);
+                        $nutrientBox.remove();
+                    });
+                }
+            });
+
+            // Add ingredient
             $addIngredientSubmit.on("click", function() {
                 const name = $("#ingredient-name").val().trim();
-                const description = $("#ingredient-description").val().trim();
+                const description = selectedIngredient ? selectedIngredient.description : $("#ingredient-description").val().trim();
                 const quantity = parseFloat($("#ingredient-quantity").val());
                 const unit = $("#ingredient-unit").val();
-                if (!name || !description || isNaN(quantity) || quantity <= 0) {
+                let nutrients = selectedIngredient ? selectedIngredient.nutrients : selectedNutrients.map(name => ({
+                    name
+                }));
+
+                if (!name || (selectedIngredient ? false : !description) || isNaN(quantity) || quantity <= 0) {
                     alert("Please fill in all ingredient fields correctly.");
                     return;
                 }
+
                 const ingredient = {
                     name,
                     description,
                     quantity,
-                    unit
+                    unit,
+                    nutrients
                 };
                 addedIngredients.push(ingredient);
+
                 const $ingredientBox = $(`
-                    <div class="bg-white p-2 rounded-lg shadow-md flex justify-between items-center">
+                    <div class="bg-white p-2 rounded-lg shadow-md relative">
                         <span class="text-gray-700">${name} - ${quantity} ${unit}</span>
-                        <button type="button" class="remove-ingredient bg-red-500 text-white p-1 rounded hover:bg-red-600">Remove</button>
+                        <button type="button" class="remove-ingredient absolute top-1 right-1 text-red-500 hover:text-red-700"><i class="fas fa-times"></i></button>
                     </div>
                 `);
                 $ingredientsList.append($ingredientBox);
@@ -528,14 +638,18 @@
                     }
                     $ingredientBox.remove();
                 });
+
                 $ingredientFormContainer.addClass("hidden");
                 $addIngredientBtn.prop("disabled", false);
                 $("#ingredient-name").val("");
                 $("#ingredient-description").val("");
                 $("#ingredient-quantity").val("");
                 $("#ingredient-unit").val("gram");
+                selectedNutrients = [];
+                selectedIngredient = null;
             });
 
+            // Meal Form Submission
             $mealForm.on("submit", async function(e) {
                 e.preventDefault();
                 const name = $("#meal-name").val().trim();
@@ -547,7 +661,13 @@
                 const mealData = {
                     name,
                     description,
-                    ingredients: addedIngredients
+                    ingredients: addedIngredients.map(ing => ({
+                        name: ing.name,
+                        description: ing.description,
+                        quantity: ing.quantity,
+                        unit: ing.unit,
+                        nutrients: ing.nutrients
+                    }))
                 };
                 try {
                     await axios.post("/api/v1/meals/", mealData, {

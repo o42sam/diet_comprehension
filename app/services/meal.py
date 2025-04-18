@@ -7,7 +7,8 @@ from pymongo.errors import PyMongoError
 from pydantic import ValidationError
 from typing import Tuple, List
 from app.constants import NUTRIENT_UNITS
-
+from app.models.ingredient import Ingredient
+from bson import ObjectId
 
 async def create_meal_entry(db, meal: Meal, user_id: str) -> MealListItem:
     try:
@@ -15,10 +16,39 @@ async def create_meal_entry(db, meal: Meal, user_id: str) -> MealListItem:
         meal_dict["user_id"] = user_id
         if not meal_dict.get("timestamp"):
             meal_dict["timestamp"] = datetime.utcnow()
+
+        # Process ingredients
+        processed_ingredients = []
+        for meal_ingredient in meal.ingredients:
+            if isinstance(meal_ingredient.ingredient, str):
+                # Existing ingredient ID provided
+                ingredient_id = meal_ingredient.ingredient
+                ingredient = await db.ingredients.find_one({"_id": ObjectId(ingredient_id)})
+                if not ingredient:
+                    raise MealValidationError(f"Ingredient with ID {ingredient_id} not found")
+            elif isinstance(meal_ingredient.ingredient, Ingredient):
+                # New ingredient data provided
+                ingredient_data = meal_ingredient.ingredient
+                # Check if it already exists by name
+                existing = await db.ingredients.find_one({"name": ingredient_data.name})
+                if existing:
+                    ingredient_id = str(existing["_id"])
+                else:
+                    # Add new ingredient to the ingredients collection
+                    new_ingredient = ingredient_data.dict(exclude_unset=True)
+                    result = await db.ingredients.insert_one(new_ingredient)
+                    ingredient_id = str(result.inserted_id)
+            else:
+                raise MealValidationError("Invalid ingredient type")
+
+            processed_ingredients.append({"ingredient_id": ingredient_id, "quantity": meal_ingredient.quantity})
+
+        meal_dict["ingredients"] = processed_ingredients
         meal_id = await create_meal(db, meal_dict)
-        meal_dict["_id"] = meal_id  # Use "_id" to match MongoDB's field
-        meal_dict["id"] = str(meal_id)  # Convert ObjectId to string for Pydantic model
+        meal_dict["_id"] = meal_id
+        meal_dict["id"] = str(meal_id)
         return MealListItem(**meal_dict)
+
     except PyMongoError as e:
         logger.error(f"Database error while creating meal for user {user_id}: {e}")
         raise MealCreationError(f"Failed to create meal due to a database error: {e}")

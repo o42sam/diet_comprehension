@@ -6,7 +6,7 @@ from loguru import logger
 
 async def register_user(db, user: UserCreate) -> UserOut:
     hashed_password = hash_password(user.password)
-    user_dict = user.dict()
+    user_dict = user.model_dump()  # Updated from user.dict()
     user_dict["password"] = hashed_password
     user_id = await create_user(db, user_dict)
     logger.info(f"User registered: {user.username}")

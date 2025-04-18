@@ -6,12 +6,15 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import JSONResponse
 from contextlib import asynccontextmanager
 from loguru import logger
+from app.dependencies.database import get_db
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
     # redis = get_redis_client()
     # await FastAPILimiter.init(redis)
+    db = await get_db()
+    await db.ingredients.create_index("name", unique=True)
     logger.info("Application startup completed")
     yield
     

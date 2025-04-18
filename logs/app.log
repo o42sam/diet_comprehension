@@ -1272,3 +1272,855 @@ ingredients.0.ingredient_id
   Field required [type=missing, input_value={'name': 'Custard', 'desc...'gram', 'quantity': 1.0}, input_type=dict]
     For further information visit https://errors.pydantic.dev/2.11/v/missing
 2025-04-14 11:22:18.134 | INFO     | __main__:lifespan:20 - Application shutdown completed
+2025-04-17 12:03:34.200 | INFO     | __main__:lifespan:15 - Application startup completed
+2025-04-17 14:39:05.951 | ERROR    | __main__:global_exception_handler:28 - Unhandled exception: localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 6800f64bbd62c66c59d20af9, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+Traceback (most recent call last):
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x0000020A60165360>>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x0000020A60165...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x0000020A600CB280>
+          └ <fastapi.applications.FastAPI object at 0x0000020A5BD4BD30>
+
+> File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x0000020A600B51B0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x0000020A60165...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x0000020A600CB250>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x0000020A600CB280>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x0000020A600B51B0>
+          │                            │    │    │     │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x0000020A60165...
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    │    └ <starlette.requests.Request object at 0x0000020A600CBCA0>
+          │                            │    └ <fastapi.routing.APIRouter object at 0x0000020A5FEEA9E0>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x0000020A600CB250>
+          └ <function wrap_app_handling_exceptions at 0x0000020A5EB1FAC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000020A600B5630>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x0000020A60165...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <fastapi.routing.APIRouter object at 0x0000020A5FEEA9E0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000020A600B5630>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x0000020A60165...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <bound method Router.app of <fastapi.routing.APIRouter object at 0x0000020A5FEEA9E0>>
+          └ <fastapi.routing.APIRouter object at 0x0000020A5FEEA9E0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000020A600B5630>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x0000020A60165...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x0000020A5EB49000>
+          └ APIRoute(path='/api/v1/users/login', name='login', methods=['POST'])
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000020A600B5630>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x0000020A60165...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x0000020A5FF0C700>
+          └ APIRoute(path='/api/v1/users/login', name='login', methods=['POST'])
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000020A600B5630>
+          │                            │    │        │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x0000020A60165...
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    └ <starlette.requests.Request object at 0x0000020A60108880>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x0000020A600B5E10>
+          └ <function wrap_app_handling_exceptions at 0x0000020A5EB1FAC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000020A600B53F0>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x0000020A60165...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <function request_response.<locals>.app.<locals>.app at 0x0000020A600B5E10>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+                     │ └ <starlette.requests.Request object at 0x0000020A60108880>
+                     └ <function get_request_handler.<locals>.app at 0x0000020A5FF0C790>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x0000020A5EB4AB00>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'db': AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False...
+                 │         └ <function login at 0x0000020A5FEDA5F0>
+                 └ Dependant(path_params=[], query_params=[], header_params=[], cookie_params=[], body_params=[ModelField(field_info=Body(Pydant...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\api\v1\user.py", line 17, in login
+    token = await login_user(db, user.username, user.password)
+                  │          │   │    │         │    └ 'ghiblimeali'
+                  │          │   │    │         └ UserLogin(username='sammyscarface', password='ghiblimeali')
+                  │          │   │    └ 'sammyscarface'
+                  │          │   └ UserLogin(username='sammyscarface', password='ghiblimeali')
+                  │          └ AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, drive...
+                  └ <function login_user at 0x0000020A5FC525F0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\services\user.py", line 16, in login_user
+    user = await get_user_by_username(db, username)
+                 │                    │   └ 'sammyscarface'
+                 │                    └ AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, drive...
+                 └ <function get_user_by_username at 0x0000020A5F8B5750>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\repositories\user.py", line 8, in get_user_by_username
+    return await db.users.find_one({"username": username})
+                 │                              └ 'sammyscarface'
+                 └ AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, drive...
+
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │        │            └ None
+             │        └ None
+             └ None
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\collection.py", line 1755, in find_one
+    for result in cursor.limit(-1):
+                  │      └ <function Cursor.limit at 0x0000020A5F6F1240>
+                  └ <pymongo.synchronous.cursor.Cursor object at 0x0000020A60165D20>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\cursor.py", line 1284, in __next__
+    return self.next()
+           │    └ <function Cursor.next at 0x0000020A5F6F24D0>
+           └ <pymongo.synchronous.cursor.Cursor object at 0x0000020A60165D20>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\cursor.py", line 1260, in next
+    if len(self._data) or self._refresh():
+           │    │         │    └ <function Cursor._refresh at 0x0000020A5F6F23B0>
+           │    │         └ <pymongo.synchronous.cursor.Cursor object at 0x0000020A60165D20>
+           │    └ deque([])
+           └ <pymongo.synchronous.cursor.Cursor object at 0x0000020A60165D20>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\cursor.py", line 1208, in _refresh
+    self._send_message(q)
+    │    │             └ <pymongo.message._Query object at 0x0000020A6016BED0>
+    │    └ <function Cursor._send_message at 0x0000020A5F6F2320>
+    └ <pymongo.synchronous.cursor.Cursor object at 0x0000020A60165D20>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\cursor.py", line 1102, in _send_message
+    response = client._run_operation(
+               │      └ <function MongoClient._run_operation at 0x0000020A5F7AE710>
+               └ MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, driver=DriverInfo(name='Motor', ver...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\_csot.py", line 119, in csot_wrapper
+    return func(self, *args, **kwargs)
+           │    │      │       └ {'address': None}
+           │    │      └ (<pymongo.message._Query object at 0x0000020A6016BED0>, <bound method Cursor._unpack_response of <pymongo.synchronous.cursor....
+           │    └ MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, driver=DriverInfo(name='Motor', ver...
+           └ <function MongoClient._run_operation at 0x0000020A5F7AE680>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\mongo_client.py", line 1896, in _run_operation
+    return self._retryable_read(
+           │    └ <function MongoClient._retryable_read at 0x0000020A5F7AE950>
+           └ MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, driver=DriverInfo(name='Motor', ver...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\mongo_client.py", line 2005, in _retryable_read
+    return self._retry_internal(
+           │    └ <function MongoClient._retry_internal at 0x0000020A5F7AE8C0>
+           └ MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, driver=DriverInfo(name='Motor', ver...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\_csot.py", line 119, in csot_wrapper
+    return func(self, *args, **kwargs)
+           │    │      │       └ {'is_read': True, 'address': None, 'read_pref': Primary(), 'retryable': True, 'operation_id': None}
+           │    │      └ (<function MongoClient._run_operation.<locals>._cmd at 0x0000020A6024CE50>, <pymongo.synchronous.client_session.ClientSession...
+           │    └ MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, driver=DriverInfo(name='Motor', ver...
+           └ <function MongoClient._retry_internal at 0x0000020A5F7AE830>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\mongo_client.py", line 1972, in _retry_internal
+    ).run()
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\mongo_client.py", line 2709, in run
+    return self._read() if self._is_read else self._write()
+           │    │          │    │             │    └ <function _ClientConnectionRetryable._write at 0x0000020A5F7AFD00>
+           │    │          │    │             └ <pymongo.synchronous.mongo_client._ClientConnectionRetryable object at 0x0000020A601660E0>
+           │    │          │    └ True
+           │    │          └ <pymongo.synchronous.mongo_client._ClientConnectionRetryable object at 0x0000020A601660E0>
+           │    └ <function _ClientConnectionRetryable._read at 0x0000020A5F7AFD90>
+           └ <pymongo.synchronous.mongo_client._ClientConnectionRetryable object at 0x0000020A601660E0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\mongo_client.py", line 2854, in _read
+    self._server = self._get_server()
+    │    │         │    └ <function _ClientConnectionRetryable._get_server at 0x0000020A5F7AFC70>
+    │    │         └ <pymongo.synchronous.mongo_client._ClientConnectionRetryable object at 0x0000020A601660E0>
+    │    └ None
+    └ <pymongo.synchronous.mongo_client._ClientConnectionRetryable object at 0x0000020A601660E0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\mongo_client.py", line 2802, in _get_server
+    return self._client._select_server(
+           │    │       └ <function MongoClient._select_server at 0x0000020A5F7AE3B0>
+           │    └ MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, driver=DriverInfo(name='Motor', ver...
+           └ <pymongo.synchronous.mongo_client._ClientConnectionRetryable object at 0x0000020A601660E0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\mongo_client.py", line 1791, in _select_server
+    server = topology.select_server(
+             │        └ <function Topology.select_server at 0x0000020A5F7971C0>
+             └ <Topology <TopologyDescription id: 6800f64bbd62c66c59d20af9, topology_type: Unknown, servers: [<ServerDescription ('localhost...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\topology.py", line 409, in select_server
+    server = self._select_server(
+             │    └ <function Topology._select_server at 0x0000020A5F797130>
+             └ <Topology <TopologyDescription id: 6800f64bbd62c66c59d20af9, topology_type: Unknown, servers: [<ServerDescription ('localhost...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\topology.py", line 387, in _select_server
+    servers = self.select_servers(
+              │    └ <function Topology.select_servers at 0x0000020A5F797010>
+              └ <Topology <TopologyDescription id: 6800f64bbd62c66c59d20af9, topology_type: Unknown, servers: [<ServerDescription ('localhost...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\topology.py", line 294, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          │    └ <function Topology._select_servers_loop at 0x0000020A5F7970A0>
+                          └ <Topology <TopologyDescription id: 6800f64bbd62c66c59d20af9, topology_type: Unknown, servers: [<ServerDescription ('localhost...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\topology.py", line 344, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+          └ <class 'pymongo.errors.ServerSelectionTimeoutError'>
+
+pymongo.errors.ServerSelectionTimeoutError: localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 6800f64bbd62c66c59d20af9, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-04-17 14:40:32.694 | ERROR    | __main__:global_exception_handler:28 - Unhandled exception: localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 6800f6a2bd62c66c59d20afa, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+Traceback (most recent call last):
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x0000020A60167820>>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x0000020A60167...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x0000020A600CB280>
+          └ <fastapi.applications.FastAPI object at 0x0000020A5BD4BD30>
+
+> File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x0000020A600B5480>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x0000020A60167...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x0000020A600CB250>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x0000020A600CB280>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x0000020A600B5480>
+          │                            │    │    │     │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x0000020A60167...
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    │    └ <starlette.requests.Request object at 0x0000020A60166DA0>
+          │                            │    └ <fastapi.routing.APIRouter object at 0x0000020A5FEEA9E0>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x0000020A600CB250>
+          └ <function wrap_app_handling_exceptions at 0x0000020A5EB1FAC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000020A6024CF70>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x0000020A60167...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <fastapi.routing.APIRouter object at 0x0000020A5FEEA9E0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000020A6024CF70>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x0000020A60167...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <bound method Router.app of <fastapi.routing.APIRouter object at 0x0000020A5FEEA9E0>>
+          └ <fastapi.routing.APIRouter object at 0x0000020A5FEEA9E0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000020A6024CF70>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x0000020A60167...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x0000020A5EB49000>
+          └ APIRoute(path='/api/v1/users/login', name='login', methods=['POST'])
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000020A6024CF70>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x0000020A60167...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x0000020A5FF0C700>
+          └ APIRoute(path='/api/v1/users/login', name='login', methods=['POST'])
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000020A6024CF70>
+          │                            │    │        │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x0000020A60167...
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    └ <starlette.requests.Request object at 0x0000020A601673A0>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x0000020A6024D000>
+          └ <function wrap_app_handling_exceptions at 0x0000020A5EB1FAC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x0000020A60538EE0>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x0000020A60167...
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <function request_response.<locals>.app.<locals>.app at 0x0000020A6024D000>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+                     │ └ <starlette.requests.Request object at 0x0000020A601673A0>
+                     └ <function get_request_handler.<locals>.app at 0x0000020A5FF0C790>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x0000020A5EB4AB00>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'db': AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False...
+                 │         └ <function login at 0x0000020A5FEDA5F0>
+                 └ Dependant(path_params=[], query_params=[], header_params=[], cookie_params=[], body_params=[ModelField(field_info=Body(Pydant...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\api\v1\user.py", line 17, in login
+    token = await login_user(db, user.username, user.password)
+                  │          │   │    │         │    └ 'ghiblimeali'
+                  │          │   │    │         └ UserLogin(username='sammyscarface', password='ghiblimeali')
+                  │          │   │    └ 'sammyscarface'
+                  │          │   └ UserLogin(username='sammyscarface', password='ghiblimeali')
+                  │          └ AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, drive...
+                  └ <function login_user at 0x0000020A5FC525F0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\services\user.py", line 16, in login_user
+    user = await get_user_by_username(db, username)
+                 │                    │   └ 'sammyscarface'
+                 │                    └ AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, drive...
+                 └ <function get_user_by_username at 0x0000020A5F8B5750>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\repositories\user.py", line 8, in get_user_by_username
+    return await db.users.find_one({"username": username})
+                 │                              └ 'sammyscarface'
+                 └ AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, drive...
+
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │        │            └ None
+             │        └ None
+             └ None
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\collection.py", line 1755, in find_one
+    for result in cursor.limit(-1):
+                  │      └ <function Cursor.limit at 0x0000020A5F6F1240>
+                  └ <pymongo.synchronous.cursor.Cursor object at 0x0000020A60167310>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\cursor.py", line 1284, in __next__
+    return self.next()
+           │    └ <function Cursor.next at 0x0000020A5F6F24D0>
+           └ <pymongo.synchronous.cursor.Cursor object at 0x0000020A60167310>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\cursor.py", line 1260, in next
+    if len(self._data) or self._refresh():
+           │    │         │    └ <function Cursor._refresh at 0x0000020A5F6F23B0>
+           │    │         └ <pymongo.synchronous.cursor.Cursor object at 0x0000020A60167310>
+           │    └ deque([])
+           └ <pymongo.synchronous.cursor.Cursor object at 0x0000020A60167310>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\cursor.py", line 1208, in _refresh
+    self._send_message(q)
+    │    │             └ <pymongo.message._Query object at 0x0000020A604EAF00>
+    │    └ <function Cursor._send_message at 0x0000020A5F6F2320>
+    └ <pymongo.synchronous.cursor.Cursor object at 0x0000020A60167310>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\cursor.py", line 1102, in _send_message
+    response = client._run_operation(
+               │      └ <function MongoClient._run_operation at 0x0000020A5F7AE710>
+               └ MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, driver=DriverInfo(name='Motor', ver...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\_csot.py", line 119, in csot_wrapper
+    return func(self, *args, **kwargs)
+           │    │      │       └ {'address': None}
+           │    │      └ (<pymongo.message._Query object at 0x0000020A604EAF00>, <bound method Cursor._unpack_response of <pymongo.synchronous.cursor....
+           │    └ MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, driver=DriverInfo(name='Motor', ver...
+           └ <function MongoClient._run_operation at 0x0000020A5F7AE680>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\mongo_client.py", line 1896, in _run_operation
+    return self._retryable_read(
+           │    └ <function MongoClient._retryable_read at 0x0000020A5F7AE950>
+           └ MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, driver=DriverInfo(name='Motor', ver...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\mongo_client.py", line 2005, in _retryable_read
+    return self._retry_internal(
+           │    └ <function MongoClient._retry_internal at 0x0000020A5F7AE8C0>
+           └ MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, driver=DriverInfo(name='Motor', ver...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\_csot.py", line 119, in csot_wrapper
+    return func(self, *args, **kwargs)
+           │    │      │       └ {'is_read': True, 'address': None, 'read_pref': Primary(), 'retryable': True, 'operation_id': None}
+           │    │      └ (<function MongoClient._run_operation.<locals>._cmd at 0x0000020A605391B0>, <pymongo.synchronous.client_session.ClientSession...
+           │    └ MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, driver=DriverInfo(name='Motor', ver...
+           └ <function MongoClient._retry_internal at 0x0000020A5F7AE830>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\mongo_client.py", line 1972, in _retry_internal
+    ).run()
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\mongo_client.py", line 2709, in run
+    return self._read() if self._is_read else self._write()
+           │    │          │    │             │    └ <function _ClientConnectionRetryable._write at 0x0000020A5F7AFD00>
+           │    │          │    │             └ <pymongo.synchronous.mongo_client._ClientConnectionRetryable object at 0x0000020A605441F0>
+           │    │          │    └ True
+           │    │          └ <pymongo.synchronous.mongo_client._ClientConnectionRetryable object at 0x0000020A605441F0>
+           │    └ <function _ClientConnectionRetryable._read at 0x0000020A5F7AFD90>
+           └ <pymongo.synchronous.mongo_client._ClientConnectionRetryable object at 0x0000020A605441F0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\mongo_client.py", line 2854, in _read
+    self._server = self._get_server()
+    │    │         │    └ <function _ClientConnectionRetryable._get_server at 0x0000020A5F7AFC70>
+    │    │         └ <pymongo.synchronous.mongo_client._ClientConnectionRetryable object at 0x0000020A605441F0>
+    │    └ None
+    └ <pymongo.synchronous.mongo_client._ClientConnectionRetryable object at 0x0000020A605441F0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\mongo_client.py", line 2802, in _get_server
+    return self._client._select_server(
+           │    │       └ <function MongoClient._select_server at 0x0000020A5F7AE3B0>
+           │    └ MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, driver=DriverInfo(name='Motor', ver...
+           └ <pymongo.synchronous.mongo_client._ClientConnectionRetryable object at 0x0000020A605441F0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\mongo_client.py", line 1791, in _select_server
+    server = topology.select_server(
+             │        └ <function Topology.select_server at 0x0000020A5F7971C0>
+             └ <Topology <TopologyDescription id: 6800f6a2bd62c66c59d20afa, topology_type: Unknown, servers: [<ServerDescription ('localhost...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\topology.py", line 409, in select_server
+    server = self._select_server(
+             │    └ <function Topology._select_server at 0x0000020A5F797130>
+             └ <Topology <TopologyDescription id: 6800f6a2bd62c66c59d20afa, topology_type: Unknown, servers: [<ServerDescription ('localhost...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\topology.py", line 387, in _select_server
+    servers = self.select_servers(
+              │    └ <function Topology.select_servers at 0x0000020A5F797010>
+              └ <Topology <TopologyDescription id: 6800f6a2bd62c66c59d20afa, topology_type: Unknown, servers: [<ServerDescription ('localhost...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\topology.py", line 294, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          │    └ <function Topology._select_servers_loop at 0x0000020A5F7970A0>
+                          └ <Topology <TopologyDescription id: 6800f6a2bd62c66c59d20afa, topology_type: Unknown, servers: [<ServerDescription ('localhost...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\pymongo\synchronous\topology.py", line 344, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+          └ <class 'pymongo.errors.ServerSelectionTimeoutError'>
+
+pymongo.errors.ServerSelectionTimeoutError: localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 6800f6a2bd62c66c59d20afa, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-04-17 14:44:10.667 | INFO     | app.services.user:login_user:21 - User logged in: sammyscarface
+2025-04-17 14:44:10.810 | ERROR    | app.services.meal:get_last_meal_entry_by_user:42 - Validation error for meal data: 1 validation error for MealListItem
+ingredients.0.ingredient_id
+  Field required [type=missing, input_value={'name': 'Custard', 'desc...'gram', 'quantity': 1.0}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-04-17 16:22:07.321 | INFO     | __main__:lifespan:20 - Application shutdown completed
+2025-04-18 11:51:29.714 | INFO     | app.api.v1.user:register:12 - Registering user: testuser
+2025-04-18 11:51:29.730 | INFO     | app.api.v1.user:register:12 - Registering user: testuser
+2025-04-18 11:51:29.731 | ERROR    | app.main:global_exception_handler:31 - Unhandled exception: Username already exists
+Traceback (most recent call last):
+
+  File "C:\Program Files\Python310\lib\threading.py", line 973, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000001B0AAACD990>
+    └ <Thread(Thread-2 (run_blocking_portal), started daemon 17364)>
+
+  File "C:\Program Files\Python310\lib\threading.py", line 1016, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x000001B0AAACD6C0>
+    └ <Thread(Thread-2 (run_blocking_portal), started daemon 17364)>
+
+  File "C:\Program Files\Python310\lib\threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(Thread-2 (run_blocking_portal), started daemon 17364)>
+    │    │        │    └ ()
+    │    │        └ <Thread(Thread-2 (run_blocking_portal), started daemon 17364)>
+    │    └ <function start_blocking_portal.<locals>.run_blocking_portal at 0x000001B0AE97FF40>
+    └ <Thread(Thread-2 (run_blocking_portal), started daemon 17364)>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\anyio\from_thread.py", line 481, in run_blocking_portal
+    _eventloop.run(
+    │          └ <function run at 0x000001B0AB368DC0>
+    └ <module 'anyio._core._eventloop' from 'C:\\Users\\ELITE SPACE FOOTBALL\\Documents\\mock_server\\.mock_server\\lib\\site-packa...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\anyio\_core\_eventloop.py", line 74, in run
+    return async_backend.run(func, args, {}, backend_options)
+           │             │   │     │         └ {}
+           │             │   │     └ ()
+           │             │   └ <function start_blocking_portal.<locals>.run_portal at 0x000001B0AE97FB50>
+           │             └ <classmethod(<function AsyncIOBackend.run at 0x000001B0AFB4FE20>)>
+           └ <class 'anyio._backends._asyncio.AsyncIOBackend'>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\anyio\_backends\_asyncio.py", line 2310, in run
+    return runner.run(wrapper())
+           │      │   └ <function start_blocking_portal.<locals>.run_portal at 0x000001B0AFB35480>
+           │      └ <function Runner.run at 0x000001B0AFE05B40>
+           └ <anyio._backends._asyncio.Runner object at 0x000001B0AFAFCD90>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\anyio\_backends\_asyncio.py", line 217, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='anyio.from_thread.start_blocking_portal.<locals>.run_portal' coro=<start_blocking_portal.<locals>.run_por...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000001B0ACD193F0>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <anyio._backends._asyncio.Runner object at 0x000001B0AFAFCD90>
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 633, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x000001B0ACD6F7F0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 600, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001B0ACD1AE60>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 1896, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001B0AB4CA830>
+    └ <Handle Task.task_wakeup(<Future finis...al_tracker'))>)>
+
+  File "C:\Program Files\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finis...al_tracker'))>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finis...al_tracker'))>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finis...al_tracker'))>)>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\anyio\from_thread.py", line 221, in _call_func
+    retval = await retval_or_awaitable
+                   └ <coroutine object FastAPI.__call__ at 0x000001B0AFB68190>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <function _TestClientTransport.handle_request.<locals>.send at 0x000001B0AE97CAF0>
+                           │      └ <function _TestClientTransport.handle_request.<locals>.receive at 0x000001B0AE97F9A0>
+                           └ {'type': 'http', 'http_version': '1.1', 'method': 'POST', 'path': '/api/v1/users/register', 'raw_path': b'/api/v1/users/regis...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function _TestClientTransport.handle_request.<locals>.send at 0x000001B0AE97CAF0>
+          │    │                │      └ <function _TestClientTransport.handle_request.<locals>.receive at 0x000001B0AE97F9A0>
+          │    │                └ {'type': 'http', 'http_version': '1.1', 'method': 'POST', 'path': '/api/v1/users/register', 'raw_path': b'/api/v1/users/regis...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001B0AFB0A650>
+          └ <fastapi.applications.FastAPI object at 0x000001B0AE050160>
+
+> File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000001B0AFD9BD90>
+          │    │   │      └ <function _TestClientTransport.handle_request.<locals>.receive at 0x000001B0AE97F9A0>
+          │    │   └ {'type': 'http', 'http_version': '1.1', 'method': 'POST', 'path': '/api/v1/users/register', 'raw_path': b'/api/v1/users/regis...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001B0AFB0A620>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001B0AFB0A650>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000001B0AFD9BD90>
+          │                            │    │    │     │      └ <function _TestClientTransport.handle_request.<locals>.receive at 0x000001B0AE97F9A0>
+          │                            │    │    │     └ {'type': 'http', 'http_version': '1.1', 'method': 'POST', 'path': '/api/v1/users/register', 'raw_path': b'/api/v1/users/regis...
+          │                            │    │    └ <starlette.requests.Request object at 0x000001B0AFAFC100>
+          │                            │    └ <fastapi.routing.APIRouter object at 0x000001B0AE94BAC0>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001B0AFB0A620>
+          └ <function wrap_app_handling_exceptions at 0x000001B0ADD8AE60>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001B0AFE4C0D0>
+          │   │      └ <function _TestClientTransport.handle_request.<locals>.receive at 0x000001B0AE97F9A0>
+          │   └ {'type': 'http', 'http_version': '1.1', 'method': 'POST', 'path': '/api/v1/users/register', 'raw_path': b'/api/v1/users/regis...
+          └ <fastapi.routing.APIRouter object at 0x000001B0AE94BAC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001B0AFE4C0D0>
+          │    │                │      └ <function _TestClientTransport.handle_request.<locals>.receive at 0x000001B0AE97F9A0>
+          │    │                └ {'type': 'http', 'http_version': '1.1', 'method': 'POST', 'path': '/api/v1/users/register', 'raw_path': b'/api/v1/users/regis...
+          │    └ <bound method Router.app of <fastapi.routing.APIRouter object at 0x000001B0AE94BAC0>>
+          └ <fastapi.routing.APIRouter object at 0x000001B0AE94BAC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001B0AFE4C0D0>
+          │     │      │      └ <function _TestClientTransport.handle_request.<locals>.receive at 0x000001B0AE97F9A0>
+          │     │      └ {'type': 'http', 'http_version': '1.1', 'method': 'POST', 'path': '/api/v1/users/register', 'raw_path': b'/api/v1/users/regis...
+          │     └ <function Route.handle at 0x000001B0ADDA83A0>
+          └ APIRoute(path='/api/v1/users/register', name='register', methods=['POST'])
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001B0AFE4C0D0>
+          │    │   │      └ <function _TestClientTransport.handle_request.<locals>.receive at 0x000001B0AE97F9A0>
+          │    │   └ {'type': 'http', 'http_version': '1.1', 'method': 'POST', 'path': '/api/v1/users/register', 'raw_path': b'/api/v1/users/regis...
+          │    └ <function request_response.<locals>.app at 0x000001B0AE91E7A0>
+          └ APIRoute(path='/api/v1/users/register', name='register', methods=['POST'])
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001B0AFE4C0D0>
+          │                            │    │        │      └ <function _TestClientTransport.handle_request.<locals>.receive at 0x000001B0AE97F9A0>
+          │                            │    │        └ {'type': 'http', 'http_version': '1.1', 'method': 'POST', 'path': '/api/v1/users/register', 'raw_path': b'/api/v1/users/regis...
+          │                            │    └ <starlette.requests.Request object at 0x000001B0AFAFC160>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x000001B0AFE4C160>
+          └ <function wrap_app_handling_exceptions at 0x000001B0ADD8AE60>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001B0AFE4C1F0>
+          │   │      └ <function _TestClientTransport.handle_request.<locals>.receive at 0x000001B0AE97F9A0>
+          │   └ {'type': 'http', 'http_version': '1.1', 'method': 'POST', 'path': '/api/v1/users/register', 'raw_path': b'/api/v1/users/regis...
+          └ <function request_response.<locals>.app.<locals>.app at 0x000001B0AFE4C160>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+                     │ └ <starlette.requests.Request object at 0x000001B0AFAFC160>
+                     └ <function get_request_handler.<locals>.app at 0x000001B0AE91E4D0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x000001B0ADDA9EA0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'db': AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False...
+                 │         └ <function register at 0x000001B0AE91C550>
+                 └ Dependant(path_params=[], query_params=[], header_params=[], cookie_params=[], body_params=[ModelField(field_info=Body(Pydant...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\api\v1\user.py", line 13, in register
+    return await register_user(db, user)
+                 │             │   └ UserCreate(username='testuser', email='test@example.com', password='securepassword123')
+                 │             └ AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, drive...
+                 └ <AsyncMock name='register_user' id='1858373459424'>
+
+  File "C:\Program Files\Python310\lib\unittest\mock.py", line 2202, in _execute_mock_call
+    raise effect
+          └ UserCreationError('Username already exists')
+
+app.exceptions.user.UserCreationError: Username already exists
+2025-04-18 11:51:31.436 | ERROR    | app.main:global_exception_handler:31 - Unhandled exception: Invalid credentials
+Traceback (most recent call last):
+
+  File "C:\Program Files\Python310\lib\threading.py", line 973, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000001B0AAACD990>
+    └ <Thread(Thread-5 (run_blocking_portal), started daemon 12224)>
+
+  File "C:\Program Files\Python310\lib\threading.py", line 1016, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x000001B0AAACD6C0>
+    └ <Thread(Thread-5 (run_blocking_portal), started daemon 12224)>
+
+  File "C:\Program Files\Python310\lib\threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(Thread-5 (run_blocking_portal), started daemon 12224)>
+    │    │        │    └ ()
+    │    │        └ <Thread(Thread-5 (run_blocking_portal), started daemon 12224)>
+    │    └ <function start_blocking_portal.<locals>.run_blocking_portal at 0x000001B0AFE04310>
+    └ <Thread(Thread-5 (run_blocking_portal), started daemon 12224)>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\anyio\from_thread.py", line 481, in run_blocking_portal
+    _eventloop.run(
+    │          └ <function run at 0x000001B0AB368DC0>
+    └ <module 'anyio._core._eventloop' from 'C:\\Users\\ELITE SPACE FOOTBALL\\Documents\\mock_server\\.mock_server\\lib\\site-packa...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\anyio\_core\_eventloop.py", line 74, in run
+    return async_backend.run(func, args, {}, backend_options)
+           │             │   │     │         └ {}
+           │             │   │     └ ()
+           │             │   └ <function start_blocking_portal.<locals>.run_portal at 0x000001B0AFE04040>
+           │             └ <classmethod(<function AsyncIOBackend.run at 0x000001B0AFB4FE20>)>
+           └ <class 'anyio._backends._asyncio.AsyncIOBackend'>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\anyio\_backends\_asyncio.py", line 2310, in run
+    return runner.run(wrapper())
+           │      │   └ <function start_blocking_portal.<locals>.run_portal at 0x000001B0AFE04D30>
+           │      └ <function Runner.run at 0x000001B0AFE05B40>
+           └ <anyio._backends._asyncio.Runner object at 0x000001B0B01FA500>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\anyio\_backends\_asyncio.py", line 217, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='anyio.from_thread.start_blocking_portal.<locals>.run_portal' coro=<start_blocking_portal.<locals>.run_por...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000001B0ACD193F0>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <anyio._backends._asyncio.Runner object at 0x000001B0B01FA500>
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 633, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x000001B0ACD6F7F0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 600, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001B0ACD1AE60>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Program Files\Python310\lib\asyncio\base_events.py", line 1896, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001B0AB4CA830>
+    └ <Handle Task.task_wakeup(<Future finis...al_tracker'))>)>
+
+  File "C:\Program Files\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finis...al_tracker'))>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finis...al_tracker'))>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finis...al_tracker'))>)>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\anyio\from_thread.py", line 221, in _call_func
+    retval = await retval_or_awaitable
+                   └ <coroutine object FastAPI.__call__ at 0x000001B0AFF7DD90>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <function _TestClientTransport.handle_request.<locals>.send at 0x000001B0AE97C820>
+                           │      └ <function _TestClientTransport.handle_request.<locals>.receive at 0x000001B0AE97CA60>
+                           └ {'type': 'http', 'http_version': '1.1', 'method': 'POST', 'path': '/api/v1/users/login', 'raw_path': b'/api/v1/users/login', ...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function _TestClientTransport.handle_request.<locals>.send at 0x000001B0AE97C820>
+          │    │                │      └ <function _TestClientTransport.handle_request.<locals>.receive at 0x000001B0AE97CA60>
+          │    │                └ {'type': 'http', 'http_version': '1.1', 'method': 'POST', 'path': '/api/v1/users/login', 'raw_path': b'/api/v1/users/login', ...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001B0AFB0A650>
+          └ <fastapi.applications.FastAPI object at 0x000001B0AE050160>
+
+> File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000001B0AFE04790>
+          │    │   │      └ <function _TestClientTransport.handle_request.<locals>.receive at 0x000001B0AE97CA60>
+          │    │   └ {'type': 'http', 'http_version': '1.1', 'method': 'POST', 'path': '/api/v1/users/login', 'raw_path': b'/api/v1/users/login', ...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001B0AFB0A620>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x000001B0AFB0A650>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x000001B0AFE04790>
+          │                            │    │    │     │      └ <function _TestClientTransport.handle_request.<locals>.receive at 0x000001B0AE97CA60>
+          │                            │    │    │     └ {'type': 'http', 'http_version': '1.1', 'method': 'POST', 'path': '/api/v1/users/login', 'raw_path': b'/api/v1/users/login', ...
+          │                            │    │    └ <starlette.requests.Request object at 0x000001B0B01FB370>
+          │                            │    └ <fastapi.routing.APIRouter object at 0x000001B0AE94BAC0>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x000001B0AFB0A620>
+          └ <function wrap_app_handling_exceptions at 0x000001B0ADD8AE60>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001B0AFE04E50>
+          │   │      └ <function _TestClientTransport.handle_request.<locals>.receive at 0x000001B0AE97CA60>
+          │   └ {'type': 'http', 'http_version': '1.1', 'method': 'POST', 'path': '/api/v1/users/login', 'raw_path': b'/api/v1/users/login', ...
+          └ <fastapi.routing.APIRouter object at 0x000001B0AE94BAC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001B0AFE04E50>
+          │    │                │      └ <function _TestClientTransport.handle_request.<locals>.receive at 0x000001B0AE97CA60>
+          │    │                └ {'type': 'http', 'http_version': '1.1', 'method': 'POST', 'path': '/api/v1/users/login', 'raw_path': b'/api/v1/users/login', ...
+          │    └ <bound method Router.app of <fastapi.routing.APIRouter object at 0x000001B0AE94BAC0>>
+          └ <fastapi.routing.APIRouter object at 0x000001B0AE94BAC0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001B0AFE04E50>
+          │     │      │      └ <function _TestClientTransport.handle_request.<locals>.receive at 0x000001B0AE97CA60>
+          │     │      └ {'type': 'http', 'http_version': '1.1', 'method': 'POST', 'path': '/api/v1/users/login', 'raw_path': b'/api/v1/users/login', ...
+          │     └ <function Route.handle at 0x000001B0ADDA83A0>
+          └ APIRoute(path='/api/v1/users/login', name='login', methods=['POST'])
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001B0AFE04E50>
+          │    │   │      └ <function _TestClientTransport.handle_request.<locals>.receive at 0x000001B0AE97CA60>
+          │    │   └ {'type': 'http', 'http_version': '1.1', 'method': 'POST', 'path': '/api/v1/users/login', 'raw_path': b'/api/v1/users/login', ...
+          │    └ <function request_response.<locals>.app at 0x000001B0AE91E830>
+          └ APIRoute(path='/api/v1/users/login', name='login', methods=['POST'])
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001B0AFE04E50>
+          │                            │    │        │      └ <function _TestClientTransport.handle_request.<locals>.receive at 0x000001B0AE97CA60>
+          │                            │    │        └ {'type': 'http', 'http_version': '1.1', 'method': 'POST', 'path': '/api/v1/users/login', 'raw_path': b'/api/v1/users/login', ...
+          │                            │    └ <starlette.requests.Request object at 0x000001B0B01FB7F0>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x000001B0AFB35480>
+          └ <function wrap_app_handling_exceptions at 0x000001B0ADD8AE60>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001B0AFB356C0>
+          │   │      └ <function _TestClientTransport.handle_request.<locals>.receive at 0x000001B0AE97CA60>
+          │   └ {'type': 'http', 'http_version': '1.1', 'method': 'POST', 'path': '/api/v1/users/login', 'raw_path': b'/api/v1/users/login', ...
+          └ <function request_response.<locals>.app.<locals>.app at 0x000001B0AFB35480>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+                     │ └ <starlette.requests.Request object at 0x000001B0B01FB7F0>
+                     └ <function get_request_handler.<locals>.app at 0x000001B0AE91E8C0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x000001B0ADDA9EA0>
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\.mock_server\lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'db': AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False...
+                 │         └ <function login at 0x000001B0AE91C670>
+                 └ Dependant(path_params=[], query_params=[], header_params=[], cookie_params=[], body_params=[ModelField(field_info=Body(Pydant...
+
+  File "C:\Users\ELITE SPACE FOOTBALL\Documents\mock_server\app\api\v1\user.py", line 17, in login
+    token = await login_user(db, user.username, user.password)
+                  │          │   │    │         │    └ 'wrongpassword'
+                  │          │   │    │         └ UserLogin(username='wronguser', password='wrongpassword')
+                  │          │   │    └ 'wronguser'
+                  │          │   └ UserLogin(username='wronguser', password='wrongpassword')
+                  │          └ AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, drive...
+                  └ <AsyncMock name='login_user' id='1858373413152'>
+
+  File "C:\Program Files\Python310\lib\unittest\mock.py", line 2202, in _execute_mock_call
+    raise effect
+          └ UserNotFoundError('Invalid credentials')
+
+app.exceptions.user.UserNotFoundError: Invalid credentials
+2025-04-18 11:51:31.849 | INFO     | app.services.user:register_user:12 - User registered: testuser
+2025-04-18 11:51:31.857 | INFO     | app.services.user:login_user:21 - User logged in: testuser
+2025-04-18 11:51:31.869 | WARNING  | app.services.user:login_user:18 - Login failed for username: nonexistent
+2025-04-18 11:51:31.881 | WARNING  | app.services.user:login_user:18 - Login failed for username: testuser
+2025-04-18 12:30:59.699 | INFO     | app.api.v1.user:register:12 - Registering user: testuser
+2025-04-18 12:30:59.743 | INFO     | app.api.v1.user:register:12 - Registering user: testuser
+2025-04-18 12:30:59.801 | INFO     | app.services.user:register_user:12 - User registered: testuser
+2025-04-18 12:30:59.814 | INFO     | app.services.user:login_user:21 - User logged in: testuser
+2025-04-18 12:30:59.823 | WARNING  | app.services.user:login_user:18 - Login failed for username: nonexistent
+2025-04-18 12:30:59.833 | WARNING  | app.services.user:login_user:18 - Login failed for username: testuser

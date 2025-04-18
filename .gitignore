@@ -2,3 +2,4 @@
 .env
 fixes.py
 .commit_msg.txt
+**/__pycache__/
