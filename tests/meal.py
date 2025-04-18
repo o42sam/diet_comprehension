@@ -1,6 +1,6 @@
 import pytest
 from fastapi.testclient import TestClient
-from unittest.mock import AsyncMock, patch, MagicMock
+from unittest.mock import AsyncMock, patch, MagicMock, ANY
 from datetime import datetime
 from bson import ObjectId
 
@@ -8,6 +8,8 @@ from app.main import app
 from app.models.meal import Meal, MealListItem, MealIngredient, IngredientInMeal
 from app.models.ingredient import Ingredient
 from app.exceptions.meal import MealNotFoundError, MealCreationError, MealValidationError
+from app.dependencies.auth import get_current_user
+from app.dependencies.database import get_db
 
 # Mock data
 mock_ingredient_id = str(ObjectId())
@@ -237,7 +239,7 @@ def test_get_meals_paginated_success(mock_get_meals, client):
     assert response.json()["page_size"] == 10
     assert len(response.json()["meals"]) == 1
     assert response.json()["meals"][0]["name"] == "Breakfast"
-    mock_get_meals.assert_called_once_with(MagicMock(), mock_user_id, 1, 10)
+    mock_get_meals.assert_called_once_with(ANY, mock_user_id, 1, 10)
 
 @patch("app.api.v1.meal.get_paginated_meals_by_user")
 def test_get_meals_database_error(mock_get_meals, client):

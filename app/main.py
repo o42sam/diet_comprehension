@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi_limiter import FastAPILimiter
 # from app.dependencies.database import get_redis_client
-from app.api.v1 import user, meal
+from app.api.v1 import user, meal, ingredient  # Added import for ingredient router
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import JSONResponse
 from contextlib import asynccontextmanager
@@ -37,7 +37,8 @@ async def root():
 
 app.include_router(user.router, prefix="/api/v1", tags=["User"])
 app.include_router(meal.router, prefix="/api/v1", tags=["Meal"])
+app.include_router(ingredient.router, prefix="/api/v1", tags=["Ingredient"])  # Added ingredient router
 
-if (__name__ == "__main__"):
+if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)

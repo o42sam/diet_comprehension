@@ -2124,3 +2124,7 @@ app.exceptions.user.UserNotFoundError: Invalid credentials
 2025-04-18 12:30:59.814 | INFO     | app.services.user:login_user:21 - User logged in: testuser
 2025-04-18 12:30:59.823 | WARNING  | app.services.user:login_user:18 - Login failed for username: nonexistent
 2025-04-18 12:30:59.833 | WARNING  | app.services.user:login_user:18 - Login failed for username: testuser
+2025-04-18 21:22:24.587 | INFO     | app.services.meal:get_last_meal_entry_by_user:66 - Last meal entry for user test_user_123: Breakfast
+2025-04-18 23:06:22.675 | INFO     | app.services.meal:get_last_meal_entry_by_user:66 - Last meal entry for user test_user_id: Breakfast
+2025-04-19 00:29:39.178 | INFO     | app.services.meal:get_last_meal_entry_by_user:65 - Last meal entry for user test_user_123: Breakfast
+2025-04-19 00:35:17.502 | INFO     | app.services.meal:get_last_meal_entry_by_user:65 - Last meal entry for user test_user_123: Breakfast

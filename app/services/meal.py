@@ -12,7 +12,7 @@ from bson import ObjectId
 
 async def create_meal_entry(db, meal: Meal, user_id: str) -> MealListItem:
     try:
-        meal_dict = meal.dict(exclude_unset=True)
+        meal_dict = meal.model_dump(exclude_unset=True)
         meal_dict["user_id"] = user_id
         if not meal_dict.get("timestamp"):
             meal_dict["timestamp"] = datetime.utcnow()
@@ -35,7 +35,7 @@ async def create_meal_entry(db, meal: Meal, user_id: str) -> MealListItem:
                     ingredient_id = str(existing["_id"])
                 else:
                     # Add new ingredient to the ingredients collection
-                    new_ingredient = ingredient_data.dict(exclude_unset=True)
+                    new_ingredient = ingredient_data.model_dump(exclude_unset=True)
                     result = await db.ingredients.insert_one(new_ingredient)
                     ingredient_id = str(result.inserted_id)
             else:
@@ -56,7 +56,6 @@ async def create_meal_entry(db, meal: Meal, user_id: str) -> MealListItem:
         logger.error(f"Validation error for meal data: {e}")
         raise MealValidationError(f"Invalid meal data: {e}")
 
-
 async def get_last_meal_entry_by_user(db, user_id: str) -> MealListItem:
     try:
         meal = await get_last_meal_by_user(db, user_id)
@@ -71,7 +70,6 @@ async def get_last_meal_entry_by_user(db, user_id: str) -> MealListItem:
     except ValidationError as e:
         logger.error(f"Validation error for meal data: {e}")
         raise MealValidationError(f"Invalid meal data retrieved: {e}")
-    
 
 async def get_paginated_meals_by_user(db, user_id: str, page: int = 1, page_size: int = 10) -> Tuple[List[MealListItem], int]:
     try:
@@ -84,7 +82,6 @@ async def get_paginated_meals_by_user(db, user_id: str, page: int = 1, page_size
     except ValidationError as e:
         logger.error(f"Validation error for meal data: {e}")
         raise MealValidationError(f"Invalid meal data retrieved: {e}")
-
 
 async def get_detailed_meal(db, meal_id: str, user_id: str) -> dict:
     """Fetch a meal with detailed ingredient information, including nutrient units."""
