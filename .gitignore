@@ -2,4 +2,6 @@
 .env
 fixes.py
 .commit_msg.txt
-**/__pycache__/
+**/__pycache__
+/.pytest_cache
+/logs

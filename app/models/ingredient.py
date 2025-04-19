@@ -10,3 +10,12 @@ class Ingredient(BaseModel):
     reference_quantity: float
     reference_unit: str
     nutrients: Dict[str, float]
+
+class IngredientCreate(BaseModel):
+    name: str
+    description: Optional[str] = None
+    quantity: float
+    unit: float
+    reference_quantity: float
+    reference_unit: str
+    nutrients: Dict[str, float]
